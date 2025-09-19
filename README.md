@@ -11,7 +11,7 @@ This website will allow users to:
 
 ## Team Members
 - Amjad  
-- Quinn  
+- Quinn: GitHub Admin, Frontend Developement Engineer
 - Yousef  
 - Bryan  
 - Aiden  
