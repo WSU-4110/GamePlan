@@ -32,7 +32,7 @@ This website will allow users to:
   Future expansion may include native desktop applications for Windows and macOS if needed.
 
 ## Getting Started
-Once the first commit is pushed, you can clone the repo with:
+Clone the repo with:
 
 ```bash
 git clone https://github.com/WSU-4110/GamePlan.git
