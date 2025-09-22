@@ -14,7 +14,7 @@ Put all images for the website here.
 - Use `.jpg` for photos and backgrounds
 - Keep file sizes small for web
 
-### Suggested Images Needed
+### Images We Might Need
 - Game engine logos (Unity, Unreal, Godot)
 - Hero section background
 - Team member photos (optional)
