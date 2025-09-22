@@ -34,11 +34,6 @@ cd GamePlan
 - **css/styles.css**: Change how things look
 - **js/script.js**: Change how things work
 
-### Step 4: Test Your Changes
-- Save your files
-- Refresh your browser
-- See your changes!
-
 ## Team Roles - Who Does What?
 
 ### Frontend Team
