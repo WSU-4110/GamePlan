@@ -2,7 +2,7 @@
 
 This is a setup guide for the GamePlan project.
 
-## Project Structure (Simple!)
+## Project Structurea
 
 ```
 GamePlan/

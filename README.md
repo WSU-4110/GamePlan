@@ -3,6 +3,8 @@
 A collaborative project for WSU-4110 focused on building a **GameCraft Resource Website**.  
 The goal is to provide easy access to sample code, tutorials, and game development resources for multiple engines.
 
+Deployed to: [https://wsu-4110.github.io/GamePlan/](https://wsu-4110.github.io/GamePlan/)
+
 ## Project Overview
 This website will allow users to:
 - Browse and download example code for different game engines
