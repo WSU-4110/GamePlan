@@ -1,6 +1,6 @@
 # GamePlan
 
-A collaborative project for WSU-4110 focused on building a **Game Development Resource Website**.  
+A collaborative project for WSU-4110 focused on building a **GameCraft Resource Website**.  
 The goal is to provide easy access to sample code, tutorials, and game development resources for multiple engines.
 
 ## Project Overview
@@ -10,11 +10,11 @@ This website will allow users to:
 - Read about the project and its contributors
 
 ## Team Members
-- Amjad  
+- Amjad: Database and Full Stack Engineer
 - Quinn: GitHub Admin, Frontend Developement Engineer
-- Yousef  
-- Bryan  
-- Aiden  
+- Yousef:
+- Bryan:
+- Aiden: 
 
 ## Tech Stack & Platform
 
@@ -30,6 +30,10 @@ This website will allow users to:
 - **Platform:** Web-first Application  
   Designed primarily for browser access with a responsive layout.  
   Future expansion may include native desktop applications for Windows and macOS if needed.
+  
+-  ## Team Goals & Importance
+  The importance of our project is in working together as a team, brainstorming ideas, and trusting each other.
+  Our Goal is to produce amazing work that’s usable and effective, to make a change in journeys.
 
 ## Quick Start
 
