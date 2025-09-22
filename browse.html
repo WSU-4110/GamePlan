@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Code - GamePlan</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>GamePlan</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="browse.html" class="nav-link active">Browse Code</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="search.html" class="nav-link">Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h2>Browse Code Examples</h2>
+                <p>Explore game development code organized by engine and category</p>
+            </div>
+        </section>
+
+        <section class="filters">
+            <div class="container">
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="engine-filter">Engine:</label>
+                        <select id="engine-filter" class="filter-select">
+                            <option value="all">All Engines</option>
+                            <option value="unity">Unity</option>
+                            <option value="unreal">Unreal Engine</option>
+                            <option value="godot">Godot</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="category-filter">Category:</label>
+                        <select id="category-filter" class="filter-select">
+                            <option value="all">All Categories</option>
+                            <option value="movement">Player Movement</option>
+                            <option value="combat">Combat Systems</option>
+                            <option value="ui">User Interface</option>
+                            <option value="audio">Audio</option>
+                            <option value="physics">Physics</option>
+                            <option value="ai">AI & NPCs</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="code-examples">
+            <div class="container">
+                <div class="examples-grid" id="examples-grid">
+                    <!-- Example cards will be populated by JavaScript -->
+                    <div class="example-card" data-engine="unity" data-category="movement">
+                        <h4>First Person Controller</h4>
+                        <p class="engine-tag">Unity</p>
+                        <p>Basic first-person movement controller with mouse look</p>
+                        <div class="card-actions">
+                            <button class="btn btn-primary">View Code</button>
+                            <button class="btn btn-outline">Download</button>
+                        </div>
+                    </div>
+
+                    <div class="example-card" data-engine="unreal" data-category="combat">
+                        <h4>Health System</h4>
+                        <p class="engine-tag">Unreal Engine</p>
+                        <p>Complete health and damage system with UI integration</p>
+                        <div class="card-actions">
+                            <button class="btn btn-primary">View Code</button>
+                            <button class="btn btn-outline">Download</button>
+                        </div>
+                    </div>
+
+                    <div class="example-card" data-engine="godot" data-category="physics">
+                        <h4>2D Platformer Physics</h4>
+                        <p class="engine-tag">Godot</p>
+                        <p>Smooth 2D platformer movement with coyote time and jump buffering</p>
+                        <div class="card-actions">
+                            <button class="btn btn-primary">View Code</button>
+                            <button class="btn btn-outline">Download</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 GamePlan</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

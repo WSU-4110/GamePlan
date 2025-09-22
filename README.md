@@ -31,8 +31,10 @@ This website will allow users to:
   Designed primarily for browser access with a responsive layout.  
   Future expansion may include native desktop applications for Windows and macOS if needed.
 
-## Getting Started
-Clone the repo with:
+## Quick Start
 
+1. **Clone the repository:**
 ```bash
 git clone https://github.com/WSU-4110/GamePlan.git
+cd GamePlan
+```
