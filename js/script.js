@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupButtons();
 });
 
-// MOBILE MENU - Makes the hamburger menu work on phones
+// MOBILE MENU - Makes the hamburger menu work on phones.
 function setupMobileMenu() {
     // Find the hamburger button and menu
     const hamburger = document.querySelector('.hamburger');
