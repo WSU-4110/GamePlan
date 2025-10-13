@@ -93,137 +93,47 @@ function setupSearch() {
     const resultsCount = document.getElementById('results-count');
     const noResults = document.getElementById('no-results');
 
-    // Sample data - this will be replaced with real database data later
-    const sampleData = [
-        {
-            title: 'First Person Controller',
-            engine: 'Unity',
-            description: 'Basic first-person movement controller with mouse look',
-            keywords: ['movement', 'player', 'controller', 'fps']
-        },
-        {
-            title: 'Health System',
-            engine: 'Unreal Engine',
-            description: 'Complete health and damage system with UI integration',
-            keywords: ['health', 'damage', 'combat', 'ui']
-        },
-        {
-            title: '2D Platformer Physics',
-            engine: 'Godot',
-            description: 'Smooth 2D platformer movement with jump mechanics',
-            keywords: ['platformer', 'physics', '2d', 'jump']
-        },
-        {
-            title: 'Inventory System',
-            engine: 'Unity',
-            description: 'Drag and drop inventory with tooltips',
-            keywords: ['inventory', 'ui', 'drag', 'items']
-        },
-        {
-            title: 'Save System',
-            engine: 'Unity',
-            description: 'Save and load game data with JSON',
-            keywords: ['save', 'load', 'data', 'json']
-        }
-    ];
+    // Only run if we're on the search page
+    if (!searchInput || !searchButton || !resultsArea) return;
+
+    // Initialize SearchManager with Strategy
+    const dataSource = new SampleDataStrategy(); // Default to sample data
+    const searchManager = new SearchManager(dataSource);
+    searchManager.initialize({
+        searchInput,
+        resultsArea,
+        resultsInfo,
+        resultsCount,
+        noResults
+    });
+
+    // Optional: Switch to API if backend is ready
+    // Uncomment when database/README.md steps are complete:
+    // searchManager.setDataSource(new APIDataStrategy('/api/search'));
 
     // Function to perform the search
     function doSearch() {
-        if (!searchInput || !resultsArea) return;
-
-        const searchText = searchInput.value.toLowerCase().trim();
-
-        // If search is empty, clear results
-        if (searchText === '') {
-            clearResults();
-            return;
-        }
-
-        // Find matching examples
-        const matches = sampleData.filter(function(example) {
-            // Check if search text is in title, description, or keywords
-            const titleMatch = example.title.toLowerCase().includes(searchText);
-            const descMatch = example.description.toLowerCase().includes(searchText);
-            const keywordMatch = example.keywords.some(function(keyword) {
-                return keyword.toLowerCase().includes(searchText);
-            });
-
-            return titleMatch || descMatch || keywordMatch;
-        });
-
-        // Show the results
-        showResults(matches, searchText);
-    }
-
-    // Function to display search results
-    function showResults(matches, searchText) {
-        // Clear previous results
-        resultsArea.innerHTML = '';
-
-        // If no matches found
-        if (matches.length === 0) {
-            if (resultsInfo) resultsInfo.style.display = 'none';
-            if (noResults) noResults.style.display = 'block';
-            return;
-        }
-
-        // Show results count
-        if (resultsInfo) resultsInfo.style.display = 'block';
-        if (noResults) noResults.style.display = 'none';
-        if (resultsCount) {
-            resultsCount.textContent = `Found ${matches.length} result${matches.length !== 1 ? 's' : ''} for "${searchText}"`;
-        }
-
-        // Create cards for each result
-        matches.forEach(function(example) {
-            const card = document.createElement('div');
-            card.className = 'example-card';
-            card.innerHTML = `
-                <h4>${example.title}</h4>
-                <p class="engine-tag">${example.engine}</p>
-                <p>${example.description}</p>
-                <div class="card-actions">
-                    <button class="btn btn-primary">View Code</button>
-                    <button class="btn btn-outline">Download</button>
-                </div>
-            `;
-            resultsArea.appendChild(card);
-        });
-
-        // Set up the new buttons
-        setupButtons();
-    }
-
-    // Function to clear search results
-    function clearResults() {
-        if (resultsArea) resultsArea.innerHTML = '';
-        if (resultsInfo) resultsInfo.style.display = 'none';
-        if (noResults) noResults.style.display = 'none';
+        const query = searchInput.value;
+        searchManager.search(query); // Async, returns Promise
     }
 
     // Set up search button click
-    if (searchButton) {
-        searchButton.addEventListener('click', doSearch);
-    }
+    searchButton.addEventListener('click', doSearch);
 
     // Set up search when Enter key is pressed
-    if (searchInput) {
-        searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                doSearch();
-            }
-        });
-    }
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            doSearch();
+        }
+    });
 
     // Set up suggestion tags (quick search buttons)
     const suggestionTags = document.querySelectorAll('.suggestion-tag');
     suggestionTags.forEach(function(tag) {
         tag.addEventListener('click', function() {
             const searchTerm = this.getAttribute('data-search');
-            if (searchInput) {
-                searchInput.value = searchTerm;
-                doSearch();
-            }
+            searchInput.value = searchTerm;
+            doSearch();
         });
     });
 }
