@@ -1,0 +1,20 @@
+{
+  "name": "gameplan",
+  "version": "1.0.0",
+  "description": "A collaborative project for WSU-4110 focused on building a **GameCraft Resource Website**.  \r The goal is to provide easy access to sample code, tutorials, and game development resources for multiple engines.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WSU-4110/GamePlan.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WSU-4110/GamePlan/issues"
+  },
+  "homepage": "https://github.com/WSU-4110/GamePlan#readme"
+}
