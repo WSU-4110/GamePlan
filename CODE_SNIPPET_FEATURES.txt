@@ -1,0 +1,20 @@
+code snippet features
+=====================
+
+• displays code snippets in a clean dark-themed modal with syntax highlighting so devs can actually read the code without straining their eyes
+
+• stores code examples for multiple game engines (unity, unreal, godot) in one place so you don't have to hunt around different sites for the same concept
+
+• lets you switch between different engine implementations with tabs - super handy when you're learning a new engine and want to see how concepts translate
+
+• has a search system that filters through titles, descriptions, and keywords to help you find exactly what you're looking for without scrolling forever
+
+• includes a comment section where devs can drop tips and feedback on code snippets, making it a collaborative learning space
+
+• provides links to official documentation alongside code examples so you can dive deeper into the engine-specific details
+
+• designed with spread durability in mind - the concept library structure allows for easy expansion and maintenance as more code snippets get added over time
+
+• implements secure code display with proper sanitization and validation to prevent injection attacks or malicious code execution in the browser
+
+• uses a strategy pattern for data retrieval which keeps the architecture flexible and maintainable, allowing smooth transitions between local and api-based data sources
