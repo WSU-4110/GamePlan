@@ -13,24 +13,36 @@
                 <div class="nav-logo">
                     <h1>GamePlan</h1>
                 </div>
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="index.html" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="browse.html" class="nav-link active">Browse Code</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="search.html" class="nav-link">Search</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="about.html" class="nav-link">About</a>
-                    </li>
-                </ul>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+                <div class="nav-right">
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="browse.html" class="nav-link active">Browse Code</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="community.html" class="nav-link">Community</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="search.html" class="nav-link">Search</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="about.html" class="nav-link">About</a>
+                        </li>
+                    </ul>
+                    <a class="nav-profile" href="profile.html">
+                        <span class="profile-avatar" aria-hidden="true">GP</span>
+                        <span class="profile-info">
+                            <span class="profile-name">Alex Mercer</span>
+                            <span class="profile-role">Creator</span>
+                        </span>
+                    </a>
+                    <div class="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -76,32 +88,32 @@
             <div class="container">
                 <div class="examples-grid" id="examples-grid">
                     <!-- Example cards will be populated by JavaScript -->
-                    <div class="example-card" data-engine="unity" data-category="movement">
+                    <div class="example-card" data-engine="unity" data-category="movement" data-concept="first-person-controller">
                         <h4>First Person Controller</h4>
                         <p class="engine-tag">Unity</p>
                         <p>Basic first-person movement controller with mouse look</p>
                         <div class="card-actions">
-                            <button class="btn btn-primary">View Code</button>
+                            <button class="btn btn-primary" data-open-concept>Open Concept</button>
                             <button class="btn btn-outline">Download</button>
                         </div>
                     </div>
 
-                    <div class="example-card" data-engine="unreal" data-category="combat">
+                    <div class="example-card" data-engine="unreal" data-category="combat" data-concept="health-system">
                         <h4>Health System</h4>
                         <p class="engine-tag">Unreal Engine</p>
                         <p>Complete health and damage system with UI integration</p>
                         <div class="card-actions">
-                            <button class="btn btn-primary">View Code</button>
+                            <button class="btn btn-primary" data-open-concept>Open Concept</button>
                             <button class="btn btn-outline">Download</button>
                         </div>
                     </div>
 
-                    <div class="example-card" data-engine="godot" data-category="physics">
+                    <div class="example-card" data-engine="godot" data-category="physics" data-concept="platformer-physics">
                         <h4>2D Platformer Physics</h4>
                         <p class="engine-tag">Godot</p>
                         <p>Smooth 2D platformer movement with coyote time and jump buffering</p>
                         <div class="card-actions">
-                            <button class="btn btn-primary">View Code</button>
+                            <button class="btn btn-primary" data-open-concept>Open Concept</button>
                             <button class="btn btn-outline">Download</button>
                         </div>
                     </div>
@@ -115,6 +127,42 @@
             <p>&copy; 2025 GamePlan</p>
         </div>
     </footer>
+
+    <div class="concept-modal" id="concept-modal" aria-hidden="true">
+        <div class="modal-overlay" data-close-modal></div>
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="concept-title">
+            <button class="modal-close" type="button" aria-label="Close concept view" data-close-modal>&times;</button>
+            <header class="modal-header">
+                <h3 id="concept-title">Concept Title</h3>
+                <p id="concept-description" class="modal-description">Concept description goes here.</p>
+            </header>
+            <div class="engine-switcher" role="tablist" aria-label="Game engine switcher">
+                <button class="engine-tab active" type="button" role="tab" aria-selected="true" data-engine="unity">Unity</button>
+                <button class="engine-tab" type="button" role="tab" aria-selected="false" data-engine="unreal">Unreal Engine</button>
+                <button class="engine-tab" type="button" role="tab" aria-selected="false" data-engine="godot">Godot</button>
+            </div>
+            <section class="engine-panel" id="engine-panel">
+                <h4 id="engine-title" class="engine-title">Unity Implementation</h4>
+                <p id="engine-summary" class="engine-summary">Overview of how this concept works in Unity.</p>
+                <pre class="engine-code-block"><code id="engine-code">// Code sample will appear here</code></pre>
+                <div class="engine-links" id="engine-links"></div>
+            </section>
+            <section class="concept-comments">
+                <header class="comments-header">
+                    <h4>Comments</h4>
+                    <p class="comments-subtitle">Share feedback or tips for this concept.</p>
+                </header>
+                <div class="comments-list" id="comments-list" aria-live="polite">
+                    <!-- Comments will be injected dynamically -->
+                </div>
+                <form class="comment-form" id="comment-form">
+                    <label for="comment-input" class="comment-label">Add a comment</label>
+                    <textarea id="comment-input" class="comment-input" rows="3" placeholder="Share an idea, question, or resource..." required></textarea>
+                    <button type="submit" class="btn btn-primary btn-sm">Post Comment</button>
+                </form>
+            </section>
+        </div>
+    </div>
 
     <script src="js/script.js"></script>
 </body>
