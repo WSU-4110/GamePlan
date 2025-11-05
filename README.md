@@ -12,8 +12,8 @@ This website will allow users to:
 - Read about the project and its contributors
 
 ## Team Members
-- Amjad: Database and Full Stack Engineer
-- Quinn: GitHub Admin, Frontend Developement Engineer
+- Amjad: 
+- Quinn: GitHub Admin
 - Yousef:
 - Bryan:
 - Aiden: 
