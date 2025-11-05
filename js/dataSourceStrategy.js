@@ -104,3 +104,12 @@ class APIDataStrategy extends DataSourceStrategy {
         return [];
     }
 }
+
+// Export for Node.js/Jest (doesn't affect browser usage)
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        DataSourceStrategy,
+        SampleDataStrategy,
+        APIDataStrategy
+    };
+}
