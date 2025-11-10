@@ -5,6 +5,63 @@ const SUPABASE_URL = "https://ggsuwucwbnnlspeyxcph.supabase.co";
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdnc3V3dWN3Ym5ubHNwZXl4Y3BoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIyODgzMjgsImV4cCI6MjA3Nzg2NDMyOH0.Vat3PwtsCocNJkjBy4fdZkl8g6V2aSUgdHstCQvvXvM";
 const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+// Database scripts for login page
+// create elements
+const signupForm = document.getElementById('signup-form');
+const loginForm = document.getElementById('login-form');
+const logoutBtn = document.getElementById('logout-btn');
+const status = document.getElementById('status');
+
+// signup form
+signupForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const firstname = document.getElementById('signup-firstname').value;
+    const lastname = document.getElementById('signup-lastname').value;
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
+    
+    const { data, error } = await supabase.auth.signUp({ firstname, lastname, email, password });
+
+    if (error) {
+        status.textContent = 'Error: ' + error.message;
+    } else {
+        status.textContent = 'Signup successful! Check your email to confirm.';
+    }
+});
+
+// login form
+loginForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
+
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
+  if (error) {
+    status.textContent = 'Error: ' + error.message;
+  } else {
+    status.textContent = `Logged in as ${data.user.email}`;
+    logoutBtn.style.display = 'block';
+  }
+});
+
+// logout
+logoutBtn.addEventListener('click', async () => {
+    await supabase.auth.signOut();
+    status.textContent = 'Logged out';
+    logoutBtn.style.display = 'none';
+});
+
+// session check
+async function checkSession() {
+    const { data } = await supabase.auth.getSession();
+    if (data.session) {
+        status.textContent = `Already logged in as ${data.session.user.email}`;
+        logoutBtn.style.display = 'block';
+    }
+}
+checkSession();
+
 // Sample concept library that powers the concept modal
 const conceptLibrary = {
     'first-person-controller': {
