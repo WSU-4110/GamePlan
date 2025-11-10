@@ -3,7 +3,10 @@
 // Connection to Supabase Database
 const SUPABASE_URL = "https://ggsuwucwbnnlspeyxcph.supabase.co";
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdnc3V3dWN3Ym5ubHNwZXl4Y3BoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIyODgzMjgsImV4cCI6MjA3Nzg2NDMyOH0.Vat3PwtsCocNJkjBy4fdZkl8g6V2aSUgdHstCQvvXvM";
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+// Only initialize Supabase in browser environment
+const supabaseClient = (typeof window !== 'undefined' && typeof supabase !== 'undefined')
+    ? supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+    : null;
 
 // Database scripts for login page
 // create elements
@@ -12,55 +15,58 @@ const loginForm = document.getElementById('login-form');
 const logoutBtn = document.getElementById('logout-btn');
 const status = document.getElementById('status');
 
-// signup form
-signupForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const firstname = document.getElementById('signup-firstname').value;
-    const lastname = document.getElementById('signup-lastname').value;
-    const email = document.getElementById('signup-email').value;
-    const password = document.getElementById('signup-password').value;
-    
-    const { data, error } = await supabase.auth.signUp({ firstname, lastname, email, password });
+// Only run login page code if elements exist
+if (signupForm && loginForm && logoutBtn && status && supabaseClient) {
+    // signup form
+    signupForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const firstname = document.getElementById('signup-firstname').value;
+        const lastname = document.getElementById('signup-lastname').value;
+        const email = document.getElementById('signup-email').value;
+        const password = document.getElementById('signup-password').value;
 
-    if (error) {
+        const { data, error } = await supabaseClient.auth.signUp({ firstname, lastname, email, password });
+
+        if (error) {
+            status.textContent = 'Error: ' + error.message;
+        } else {
+            status.textContent = 'Signup successful! Check your email to confirm.';
+        }
+    });
+
+    // login form
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+
+      const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+
+      if (error) {
         status.textContent = 'Error: ' + error.message;
-    } else {
-        status.textContent = 'Signup successful! Check your email to confirm.';
-    }
-});
-
-// login form
-loginForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const email = document.getElementById('login-email').value;
-  const password = document.getElementById('login-password').value;
-
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-
-  if (error) {
-    status.textContent = 'Error: ' + error.message;
-  } else {
-    status.textContent = `Logged in as ${data.user.email}`;
-    logoutBtn.style.display = 'block';
-  }
-});
-
-// logout
-logoutBtn.addEventListener('click', async () => {
-    await supabase.auth.signOut();
-    status.textContent = 'Logged out';
-    logoutBtn.style.display = 'none';
-});
-
-// session check
-async function checkSession() {
-    const { data } = await supabase.auth.getSession();
-    if (data.session) {
-        status.textContent = `Already logged in as ${data.session.user.email}`;
+      } else {
+        status.textContent = `Logged in as ${data.user.email}`;
         logoutBtn.style.display = 'block';
+      }
+    });
+
+    // logout
+    logoutBtn.addEventListener('click', async () => {
+        await supabaseClient.auth.signOut();
+        status.textContent = 'Logged out';
+        logoutBtn.style.display = 'none';
+    });
+
+    // session check
+    async function checkSession() {
+        const { data } = await supabaseClient.auth.getSession();
+        if (data.session) {
+            status.textContent = `Already logged in as ${data.session.user.email}`;
+            logoutBtn.style.display = 'block';
+        }
     }
+    checkSession();
 }
-checkSession();
 
 // Sample concept library that powers the concept modal
 const conceptLibrary = {
@@ -801,4 +807,108 @@ function setupConceptModal() {
             openConcept(conceptId, defaultEngine);
         });
     });
+}
+
+// Export functions for testing (Node.js/Jest only, doesn't affect browser)
+if (typeof module !== 'undefined' && module.exports) {
+    // Simple testable implementations
+    const getComments = (conceptId) => {
+        if (!commentStore[conceptId]) {
+            const baseComments = conceptLibrary[conceptId]?.comments || [];
+            commentStore[conceptId] = baseComments.map(c => Object.assign({}, c));
+        }
+        return commentStore[conceptId];
+    };
+
+    const setModalVisibility = (isVisible, modal) => {
+        if (modal) {
+            modal.setAttribute('aria-hidden', String(!isVisible));
+            if (isVisible) {
+                modal.classList.add('open');
+            } else {
+                modal.classList.remove('open');
+            }
+        }
+    };
+
+    const filterExamples = (engine, category, grid) => {
+        if (!grid) return;
+        const allExamples = grid.querySelectorAll('.example-card');
+        allExamples.forEach(example => {
+            const cardEngine = example.getAttribute('data-engine');
+            const cardCategory = example.getAttribute('data-category');
+            const engineMatches = (engine === 'all' || cardEngine === engine);
+            const categoryMatches = (category === 'all' || cardCategory === category);
+            example.style.display = (engineMatches && categoryMatches) ? 'block' : 'none';
+        });
+    };
+
+    const updateEngineTabs = (tabs, engine) => {
+        tabs.forEach(tab => {
+            const isActive = tab.dataset.engine === engine;
+            if (isActive) {
+                tab.classList.add('active');
+            } else {
+                tab.classList.remove('active');
+            }
+            tab.setAttribute('aria-selected', String(isActive));
+        });
+    };
+
+    const renderEnginePanel = (conceptId, engine, titleEl, summaryEl, codeEl, linksEl) => {
+        const concept = conceptLibrary[conceptId];
+        const engineContent = concept?.engines?.[engine];
+
+        if (!engineContent) {
+            if (titleEl) titleEl.textContent = 'Engine data unavailable';
+            if (summaryEl) summaryEl.textContent = 'This concept is not yet documented for the selected engine.';
+            if (codeEl) codeEl.textContent = '// Coming soon';
+            if (linksEl) linksEl.innerHTML = '';
+            return;
+        }
+
+        if (titleEl) titleEl.textContent = engineContent.title;
+        if (summaryEl) summaryEl.textContent = engineContent.summary;
+        if (codeEl) codeEl.textContent = engineContent.code;
+
+        if (linksEl) {
+            linksEl.innerHTML = '';
+            if (Array.isArray(engineContent.links) && engineContent.links.length > 0) {
+                engineContent.links.forEach(link => {
+                    const anchor = document.createElement('a');
+                    anchor.href = link.url;
+                    anchor.target = '_blank';
+                    anchor.rel = 'noopener noreferrer';
+                    anchor.className = 'engine-link';
+                    anchor.textContent = link.label;
+                    linksEl.appendChild(anchor);
+                });
+            }
+        }
+    };
+
+    const openConcept = (conceptId, modal, titleEl, descEl) => {
+        const concept = conceptLibrary[conceptId];
+        if (!concept) {
+            return;
+        }
+
+        if (titleEl) titleEl.textContent = concept.title;
+        if (descEl) descEl.textContent = concept.description;
+        if (modal) {
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden', 'false');
+        }
+    };
+
+    module.exports = {
+        conceptLibrary,
+        commentStore,
+        getComments,
+        setModalVisibility,
+        filterExamples,
+        updateEngineTabs,
+        renderEnginePanel,
+        openConcept
+    };
 }
