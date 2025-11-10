@@ -1,5 +1,10 @@
 // GamePlan Website JavaScript
 
+// Connection to Supabase Database
+const SUPABASE_URL = "https://ggsuwucwbnnlspeyxcph.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdnc3V3dWN3Ym5ubHNwZXl4Y3BoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIyODgzMjgsImV4cCI6MjA3Nzg2NDMyOH0.Vat3PwtsCocNJkjBy4fdZkl8g6V2aSUgdHstCQvvXvM";
+const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
 // Sample concept library that powers the concept modal
 const conceptLibrary = {
     'first-person-controller': {
