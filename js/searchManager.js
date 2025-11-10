@@ -114,3 +114,8 @@ class SearchManager {
         if (this.noResults) this.noResults.style.display = 'none';
     }
 }
+
+// Export for Node.js/Jest (doesn't affect browser usage)
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = SearchManager;
+}
