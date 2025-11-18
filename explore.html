@@ -221,6 +221,74 @@
             </section>
         </main>
 
+        <div
+            class="concept-modal"
+            id="concept-modal"
+            aria-hidden="true"
+            role="dialog"
+            aria-modal="true"
+        >
+            <div class="modal-overlay" data-close-modal></div>
+            <div class="modal-content">
+                <button class="modal-close" data-close-modal aria-label="Close concept modal">
+                    &times;
+                </button>
+                <div class="modal-header">
+                    <div>
+                        <h3 id="concept-title"></h3>
+                        <p id="concept-description"></p>
+                    </div>
+                    <div class="engine-tabs" role="tablist">
+                        <button
+                            class="engine-tab active"
+                            data-engine="unity"
+                            role="tab"
+                            aria-selected="true"
+                        >
+                            Unity
+                        </button>
+                        <button
+                            class="engine-tab"
+                            data-engine="unreal"
+                            role="tab"
+                            aria-selected="false"
+                        >
+                            Unreal
+                        </button>
+                        <button
+                            class="engine-tab"
+                            data-engine="godot"
+                            role="tab"
+                            aria-selected="false"
+                        >
+                            Godot
+                        </button>
+                    </div>
+                </div>
+
+                <div class="engine-panel">
+                    <h4 id="engine-title"></h4>
+                    <p id="engine-summary"></p>
+                    <pre class="code-block" id="engine-code"></pre>
+                    <div id="engine-links" class="engine-links"></div>
+                </div>
+
+                <div class="comments-block">
+                    <h4>Comments</h4>
+                    <div id="comments-list" class="comment-list"></div>
+                    <form id="comment-form" class="comment-form">
+                        <label class="comment-label" for="comment-input">Add a comment</label>
+                        <textarea
+                            id="comment-input"
+                            class="comment-input"
+                            placeholder="Share feedback or ask a follow-up question"
+                        ></textarea>
+                        <button type="submit" class="btn btn-primary">Post Comment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <footer>
             <div class="container">
                 <p>&copy; 2025 GamePlan</p>
