@@ -6,6 +6,8 @@ class SearchManager {
         this.resultsInfo = null;
         this.resultsCount = null;
         this.noResults = null;
+        this.browseGrid = null;
+        this.filtersSection = null;
     }
 
     /**
@@ -18,6 +20,8 @@ class SearchManager {
         this.resultsInfo = elements.resultsInfo;
         this.resultsCount = elements.resultsCount;
         this.noResults = elements.noResults;
+        this.browseGrid = elements.browseGrid || null;
+        this.filtersSection = elements.filtersSection || null;
     }
 
     /**
@@ -57,6 +61,13 @@ class SearchManager {
      */
     _renderResults(results, query) {
         this.resultsArea.innerHTML = '';
+
+        if (this.browseGrid) {
+            this.browseGrid.style.display = results.length === 0 ? '' : 'none';
+        }
+        if (this.filtersSection) {
+            this.filtersSection.style.display = results.length === 0 ? '' : 'none';
+        }
 
         if (results.length === 0) {
             if (this.resultsInfo) this.resultsInfo.style.display = 'none';

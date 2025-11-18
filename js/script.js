@@ -483,15 +483,20 @@ func _physics_process(delta):
 
 const commentStore = {};
 
-// Wait for the page to load completely before running our code
-document.addEventListener('DOMContentLoaded', function () {
-    // Set up all the interactive features
+// Run setup when DOM is ready (handles late-loaded scripts too)
+function initGamePlanUI() {
     setupMobileMenu();
     setupBrowseFilters();
     setupSearch();
     setupConceptModal();
     setupButtons();
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGamePlanUI);
+} else {
+    initGamePlanUI();
+}
 
 // MOBILE MENU - Makes the hamburger menu work on phones.
 function setupMobileMenu() {
@@ -575,6 +580,8 @@ function setupSearch() {
     const resultsInfo = document.getElementById('results-info');
     const resultsCount = document.getElementById('results-count');
     const noResults = document.getElementById('no-results');
+    const browseGrid = document.getElementById('examples-grid');
+    const filtersSection = document.querySelector('.filters');
 
     // Only run if we're on the search page
     if (!searchInput || !searchButton || !resultsArea) return;
@@ -588,6 +595,8 @@ function setupSearch() {
         resultsInfo,
         resultsCount,
         noResults,
+        browseGrid,
+        filtersSection,
     });
 
     // Optional: Switch to API if backend is ready

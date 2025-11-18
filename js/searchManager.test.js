@@ -20,6 +20,8 @@ describe('SearchManager', () => {
       <div id="results-info"></div>
       <div id="results-count"></div>
       <div id="no-results" style="display: none;"></div>
+      <div id="examples-grid"></div>
+      <section class="filters"></section>
     `;
 
         // Create mock DOM elements
@@ -29,6 +31,8 @@ describe('SearchManager', () => {
             resultsInfo: document.getElementById('results-info'),
             resultsCount: document.getElementById('results-count'),
             noResults: document.getElementById('no-results'),
+            browseGrid: document.getElementById('examples-grid'),
+            filtersSection: document.querySelector('.filters'),
         };
 
         // Create a mock data source
@@ -181,6 +185,8 @@ describe('SearchManager', () => {
             expect(mockElements.resultsInfo.style.display).toBe('none');
             expect(mockElements.noResults.style.display).toBe('block');
             expect(mockElements.resultsArea.innerHTML).toBe('');
+            expect(mockElements.browseGrid.style.display).toBe('');
+            expect(mockElements.filtersSection.style.display).toBe('');
         });
 
         test('should hide no results message when results exist', () => {
@@ -190,6 +196,8 @@ describe('SearchManager', () => {
 
             expect(mockElements.resultsInfo.style.display).toBe('block');
             expect(mockElements.noResults.style.display).toBe('none');
+            expect(mockElements.browseGrid.style.display).toBe('none');
+            expect(mockElements.filtersSection.style.display).toBe('none');
         });
 
         test('should display correct count for single result', () => {
