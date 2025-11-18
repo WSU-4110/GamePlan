@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Code - GamePlan</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>GamePlan</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="browse.html" class="nav-link active">Browse Code</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="search.html" class="nav-link">Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h2>Browse Code Examples</h2>
+                <p>Explore game development code organized by engine and category</p>
+            </div>
+        </section>
+
+        <section class="filters">
+            <div class="container">
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="engine-filter">Engine:</label>
+                        <select id="engine-filter" class="filter-select">
+                            <option value="all">All Engines</option>
+                            <option value="unity">Unity</option>
+                            <option value="unreal">Unreal Engine</option>
+                            <option value="godot">Godot</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="category-filter">Category:</label>
+                        <select id="category-filter" class="filter-select">
+                            <option value="all">All Categories</option>
+                            <option value="movement">Player Movement</option>
+                            <option value="combat">Combat Systems</option>
+                            <option value="ui">User Interface</option>
+                            <option value="audio">Audio</option>
+                            <option value="physics">Physics</option>
+                            <option value="ai">AI & NPCs</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="code-examples">
+            <div class="container">
+                <div class="examples-grid" id="examples-grid">
+                    <!-- Example cards will be populated by JavaScript -->
+                    <div class="example-card" data-engine="unity" data-category="movement">
+                        <h4>First Person Controller</h4>
+                        <p class="engine-tag">Unity</p>
+                        <p>Basic first-person movement controller with mouse look</p>
+                        <div class="card-actions">
+                            <button class="btn btn-primary">View Code</button>
+                            <button class="btn btn-outline">Download</button>
+                        </div>
+                    </div>
+
+                    <div class="example-card" data-engine="unreal" data-category="combat">
+                        <h4>Health System</h4>
+                        <p class="engine-tag">Unreal Engine</p>
+                        <p>Complete health and damage system with UI integration</p>
+                        <div class="card-actions">
+                            <button class="btn btn-primary">View Code</button>
+                            <button class="btn btn-outline">Download</button>
+                        </div>
+                    </div>
+
+                    <div class="example-card" data-engine="godot" data-category="physics">
+                        <h4>2D Platformer Physics</h4>
+                        <p class="engine-tag">Godot</p>
+                        <p>Smooth 2D platformer movement with coyote time and jump buffering</p>
+                        <div class="card-actions">
+                            <button class="btn btn-primary">View Code</button>
+                            <button class="btn btn-outline">Download</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Code Snippets Section -->
+        <section class="snippets">
+            <div class="container">
+                <h3>C++ Code Snippets</h3>
+                <div class="snippets-grid">
+                    <!-- C++: Unreal-style Health Component -->
+                    <article class="snippet-card" data-lang="C++">
+                        <div class="snippet-header">
+                            <h4>Unreal: Health Component</h4>
+                            <span class="lang-badge">C++</span>
+                        </div>
+                        <pre class="code-block"><code>
+<span class="token keyword">#include</span> <span class="token string">"HealthComponent.h"</span>
+<span class="token keyword">#include</span> <span class="token string">"GameFramework/Actor.h"</span>
+
+<span class="token keyword">UHealthComponent</span>::<span class="token function">UHealthComponent</span>() {
+    PrimaryComponentTick.bCanEverTick = <span class="token keyword">false</span>;
+    MaxHealth = <span class="token number">100.f</span>;
+    CurrentHealth = MaxHealth;
+}
+
+<span class="token keyword">void</span> <span class="token keyword">UHealthComponent</span>::<span class="token function">ApplyDamage</span>(<span class="token keyword">float</span> Amount) {
+    CurrentHealth = <span class="token function">FMath</span>::Clamp(CurrentHealth - Amount, <span class="token number">0.f</span>, MaxHealth);
+    <span class="token keyword">if</span> (CurrentHealth &lt;= <span class="token number">0.f</span>) {
+        <span class="token comment">// broadcast death or handle actor destroy</span>
+        OnDeath.Broadcast();
+    }
+}
+                        </code></pre>
+                        <button class="btn copy-btn" aria-label="Copy code">Copy</button>
+                    </article>
+
+                    <!-- C++: Simple ECS sketch -->
+                    <article class="snippet-card" data-lang="C++">
+                        <div class="snippet-header">
+                            <h4>C++: Minimal ECS (Entity/Component)</h4>
+                            <span class="lang-badge">C++</span>
+                        </div>
+                        <pre class="code-block"><code>
+<span class="token keyword">#include</span> <span class="token string">&lt;memory&gt;</span>
+<span class="token keyword">#include</span> <span class="token string">&lt;vector&gt;</span>
+
+<span class="token keyword">struct</span> <span class="token class-name">Component</span> { <span class="token keyword">virtual</span> ~<span class="token function">Component</span>() = <span class="token keyword">default</span>; };
+
+<span class="token keyword">struct</span> <span class="token class-name">Transform</span> : <span class="token type">Component</span> {
+    <span class="token keyword">float</span> x{<span class="token number">0</span>}, y{<span class="token number">0</span>};
+};
+
+<span class="token keyword">class</span> <span class="token class-name">Entity</span> {
+    <span class="token keyword">std</span>::vector&lt;<span class="token keyword">std</span>::unique_ptr&lt;<span class="token type">Component</span>&gt;&gt; comps;
+<span class="token keyword">public</span>:
+    <span class="token keyword">template</span>&lt;<span class="token keyword">class</span> T, <span class="token keyword">class</span>... Args&gt;
+    T&amp; <span class="token function">add</span>(Args&amp;&amp;... args) {
+        <span class="token keyword">auto</span> c = <span class="token keyword">std</span>::make_unique&lt;T&gt;(<span class="token keyword">std</span>::forward&lt;Args&gt;(args)...);
+        T&amp; ref = *c;
+        comps.push_back(<span class="token keyword">std</span>::move(c));
+        <span class="token keyword">return</span> ref;
+    }
+};
+                        </code></pre>
+                        <button class="btn copy-btn" aria-label="Copy code">Copy</button>
+                    </article>
+
+                    <!-- C++: Event/Observer pattern -->
+                    <article class="snippet-card" data-lang="C++">
+                        <div class="snippet-header">
+                            <h4>C++: Event Bus (Observer)</h4>
+                            <span class="lang-badge">C++</span>
+                        </div>
+                        <pre class="code-block"><code>
+<span class="token keyword">#include</span> <span class="token string">&lt;functional&gt;</span>
+<span class="token keyword">#include</span> <span class="token string">&lt;string&gt;</span>
+<span class="token keyword">#include</span> <span class="token string">&lt;vector&gt;</span>
+
+<span class="token keyword">struct</span> <span class="token class-name">Event</span> { <span class="token type">std</span>::string name; };
+
+<span class="token keyword">class</span> <span class="token class-name">EventBus</span> {
+    <span class="token type">std</span>::vector&lt;<span class="token type">std</span>::function&lt;<span class="token keyword">void</span>(<span class="token keyword">const</span> Event&amp;)&gt;&gt; subs;
+<span class="token keyword">public</span>:
+    <span class="token keyword">void</span> <span class="token function">subscribe</span>(<span class="token type">std</span>::function&lt;<span class="token keyword">void</span>(<span class="token keyword">const</span> Event&amp;)&gt; fn) { subs.push_back(<span class="token type">std</span>::move(fn)); }
+    <span class="token keyword">void</span> <span class="token function">publish</span>(<span class="token keyword">const</span> Event&amp; e) {
+        <span class="token keyword">for</span> (<span class="token keyword">auto</span>&amp; fn : subs) fn(e);
+    }
+};
+                        </code></pre>
+                        <button class="btn copy-btn" aria-label="Copy code">Copy</button>
+                    </article>
+
+                    <!-- C++: AI Finite State Machine -->
+                    <article class="snippet-card" data-lang="C++">
+                        <div class="snippet-header">
+                            <h4>C++: AI Finite State Machine</h4>
+                            <span class="lang-badge">C++</span>
+                        </div>
+                        <pre class="code-block"><code>
+<span class="token keyword">enum</span> <span class="token keyword">class</span> <span class="token class-name">State</span> { Idle, Chase, Attack };
+
+<span class="token keyword">struct</span> <span class="token class-name">AI</span> {
+    State s{State::Idle};
+    <span class="token keyword">float</span> dist{<span class="token number">0.f</span>};
+
+    <span class="token keyword">void</span> <span class="token function">update</span>() {
+        <span class="token keyword">switch</span> (s) {
+            <span class="token keyword">case</span> State::Idle:   <span class="token keyword">if</span> (dist &lt; <span class="token number">10</span>) s = State::Chase; <span class="token keyword">break</span>;
+            <span class="token keyword">case</span> State::Chase:  <span class="token keyword">if</span> (dist &lt; <span class="token number">2</span>)  s = State::Attack; <span class="token keyword">break</span>;
+            <span class="token keyword">case</span> State::Attack: <span class="token keyword">if</span> (dist &gt; <span class="token number">3</span>)  s = State::Chase;  <span class="token keyword">break</span>;
+        }
+    }
+};
+                        </code></pre>
+                        <button class="btn copy-btn" aria-label="Copy code">Copy</button>
+                    </article>
+
+                    <!-- C++: AABB collision -->
+                    <article class="snippet-card" data-lang="C++">
+                        <div class="snippet-header">
+                            <h4>C++: AABB Collision</h4>
+                            <span class="lang-badge">C++</span>
+                        </div>
+                        <pre class="code-block"><code>
+<span class="token keyword">struct</span> <span class="token class-name">AABB</span> { <span class="token keyword">float</span> x,y,w,h; };
+
+<span class="token keyword">inline</span> <span class="token keyword">bool</span> <span class="token function">intersects</span>(<span class="token keyword">const</span> AABB&amp; a, <span class="token keyword">const</span> AABB&amp; b) {
+    <span class="token keyword">return</span> !(a.x + a.w &lt; b.x || b.x + b.w &lt; a.x ||
+             a.y + a.h &lt; b.y || b.y + b.h &lt; a.y);
+}
+                        </code></pre>
+                        <button class="btn copy-btn" aria-label="Copy code">Copy</button>
+                    </article>
+
+                    <!-- C++: RAII scope timer -->
+                    <article class="snippet-card" data-lang="C++">
+                        <div class="snippet-header">
+                            <h4>C++: RAII ScopeTimer</h4>
+                            <span class="lang-badge">C++</span>
+                        </div>
+                        <pre class="code-block"><code>
+<span class="token keyword">#include</span> <span class="token string">&lt;chrono&gt;</span>
+<span class="token keyword">#include</span> <span class="token string">&lt;iostream&gt;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">ScopeTimer</span> {
+    <span class="token type">std</span>::chrono::high_resolution_clock::time_point t0;
+    <span class="token type">const</span> <span class="token type">char</span>* label;
+<span class="token keyword">public</span>:
+    <span class="token function">ScopeTimer</span>(<span class="token type">const</span> <span class="token type">char</span>* name)
+        : t0(<span class="token type">std</span>::chrono::high_resolution_clock::now()), label(name) {}
+    ~<span class="token function">ScopeTimer</span>() {
+        <span class="token keyword">auto</span> t1 = <span class="token type">std</span>::chrono::high_resolution_clock::now();
+        <span class="token keyword">auto</span> ms = <span class="token type">std</span>::chrono::duration_cast&lt;<span class="token type">std</span>::chrono::milliseconds&gt;(t1 - t0).count();
+        <span class="token type">std</span>::cout &lt;&lt; label &lt;&lt; <span class="token string">" took "</span> &lt;&lt; ms &lt;&lt; <span class="token string">"ms\n"</span>;
+    }
+};
+                        </code></pre>
+                        <button class="btn copy-btn" aria-label="Copy code">Copy</button>
+                    </article>
+
+                    <!-- Unreal: Timer System -->
+                    <article class="snippet-card" data-lang="C++">
+                        <div class="snippet-header">
+                            <h4>Unreal: Timer System</h4>
+                            <span class="lang-badge">C++</span>
+                        </div>
+                        <pre class="code-block"><code>
+<span class="token keyword">#include</span> <span class="token string">"TimerManager.h"</span>
+
+<span class="token keyword">void</span> <span class="token keyword">AMyActor</span>::<span class="token function">BeginPlay</span>() {
+    <span class="token keyword">Super</span>::BeginPlay();
+
+    <span class="token comment">// Set repeating timer</span>
+    GetWorldTimerManager().SetTimer(
+        TimerHandle,
+        <span class="token keyword">this</span>,
+        &amp;<span class="token keyword">AMyActor</span>::OnTimerFire,
+        <span class="token number">2.0f</span>,  <span class="token comment">// interval</span>
+        <span class="token keyword">true</span>   <span class="token comment">// looping</span>
+    );
+}
+
+<span class="token keyword">void</span> <span class="token keyword">AMyActor</span>::<span class="token function">OnTimerFire</span>() {
+    <span class="token function">UE_LOG</span>(LogTemp, Warning, TEXT(<span class="token string">"Timer fired!"</span>));
+}
+
+<span class="token keyword">void</span> <span class="token keyword">AMyActor</span>::<span class="token function">StopTimer</span>() {
+    GetWorldTimerManager().ClearTimer(TimerHandle);
+}
+                        </code></pre>
+                        <button class="btn copy-btn" aria-label="Copy code">Copy</button>
+                    </article>
+
+                    <!-- Unreal: Actor Spawning -->
+                    <article class="snippet-card" data-lang="C++">
+                        <div class="snippet-header">
+                            <h4>Unreal: Actor Spawning</h4>
+                            <span class="lang-badge">C++</span>
+                        </div>
+                        <pre class="code-block"><code>
+<span class="token keyword">#include</span> <span class="token string">"GameFramework/Actor.h"</span>
+
+<span class="token keyword">void</span> <span class="token keyword">ASpawner</span>::<span class="token function">SpawnEnemy</span>() {
+    <span class="token keyword">if</span> (!EnemyClass) <span class="token keyword">return</span>;
+
+    <span class="token type">FVector</span> SpawnLocation = GetActorLocation() + <span class="token type">FVector</span>(<span class="token number">100</span>, <span class="token number">0</span>, <span class="token number">0</span>);
+    <span class="token type">FRotator</span> SpawnRotation = <span class="token type">FRotator</span>::ZeroRotator;
+
+    <span class="token type">FActorSpawnParameters</span> SpawnParams;
+    SpawnParams.Owner = <span class="token keyword">this</span>;
+    SpawnParams.SpawnCollisionHandlingOverride =
+        <span class="token type">ESpawnActorCollisionHandlingMethod</span>::AdjustIfPossibleButAlwaysSpawn;
+
+    <span class="token keyword">AActor</span>* Enemy = GetWorld()-&gt;<span class="token function">SpawnActor</span>&lt;<span class="token keyword">AActor</span>&gt;(
+        EnemyClass,
+        SpawnLocation,
+        SpawnRotation,
+        SpawnParams
+    );
+}
+                        </code></pre>
+                        <button class="btn copy-btn" aria-label="Copy code">Copy</button>
+                    </article>
+
+                    <!-- Unreal: Enhanced Input Binding -->
+                    <article class="snippet-card" data-lang="C++">
+                        <div class="snippet-header">
+                            <h4>Unreal: Enhanced Input Binding</h4>
+                            <span class="lang-badge">C++</span>
+                        </div>
+                        <pre class="code-block"><code>
+<span class="token keyword">#include</span> <span class="token string">"EnhancedInputComponent.h"</span>
+<span class="token keyword">#include</span> <span class="token string">"EnhancedInputSubsystems.h"</span>
+
+<span class="token keyword">void</span> <span class="token keyword">APlayerCharacter</span>::<span class="token function">SetupPlayerInputComponent</span>(<span class="token keyword">UInputComponent</span>* PlayerInputComponent) {
+    <span class="token keyword">Super</span>::SetupPlayerInputComponent(PlayerInputComponent);
+
+    <span class="token keyword">if</span> (<span class="token keyword">UEnhancedInputComponent</span>* EIC = Cast&lt;<span class="token keyword">UEnhancedInputComponent</span>&gt;(PlayerInputComponent)) {
+        <span class="token comment">// Bind movement action</span>
+        EIC-&gt;<span class="token function">BindAction</span>(MoveAction, <span class="token type">ETriggerEvent</span>::Triggered,
+                        <span class="token keyword">this</span>, &amp;<span class="token keyword">APlayerCharacter</span>::Move);
+
+        <span class="token comment">// Bind jump action</span>
+        EIC-&gt;<span class="token function">BindAction</span>(JumpAction, <span class="token type">ETriggerEvent</span>::Started,
+                        <span class="token keyword">this</span>, &amp;<span class="token keyword">ACharacter</span>::Jump);
+    }
+}
+
+<span class="token keyword">void</span> <span class="token keyword">APlayerCharacter</span>::<span class="token function">Move</span>(<span class="token keyword">const</span> <span class="token type">FInputActionValue</span>&amp; Value) {
+    <span class="token type">FVector2D</span> MoveVector = Value.Get&lt;<span class="token type">FVector2D</span>&gt;();
+    AddMovementInput(GetActorForwardVector(), MoveVector.Y);
+    AddMovementInput(GetActorRightVector(), MoveVector.X);
+}
+                        </code></pre>
+                        <button class="btn copy-btn" aria-label="Copy code">Copy</button>
+                    </article>
+
+                    <!-- Unreal: Weapon/Inventory Component -->
+                    <article class="snippet-card" data-lang="C++">
+                        <div class="snippet-header">
+                            <h4>Unreal: Weapon Component</h4>
+                            <span class="lang-badge">C++</span>
+                        </div>
+                        <pre class="code-block"><code>
+<span class="token keyword">#include</span> <span class="token string">"WeaponComponent.h"</span>
+<span class="token keyword">#include</span> <span class="token string">"Kismet/GameplayStatics.h"</span>
+
+<span class="token keyword">void</span> <span class="token keyword">UWeaponComponent</span>::<span class="token function">Fire</span>() {
+    <span class="token keyword">if</span> (CurrentAmmo &lt;= <span class="token number">0</span>) {
+        <span class="token function">UE_LOG</span>(LogTemp, Warning, TEXT(<span class="token string">"Out of ammo!"</span>));
+        <span class="token keyword">return</span>;
+    }
+
+    CurrentAmmo--;
+
+    <span class="token type">FVector</span> Start = GetOwner()-&gt;GetActorLocation();
+    <span class="token type">FVector</span> Forward = GetOwner()-&gt;GetActorForwardVector();
+    <span class="token type">FVector</span> End = Start + (Forward * <span class="token number">5000.f</span>);
+
+    <span class="token type">FHitResult</span> Hit;
+    <span class="token type">FCollisionQueryParams</span> Params;
+    Params.AddIgnoredActor(GetOwner());
+
+    <span class="token keyword">if</span> (GetWorld()-&gt;<span class="token function">LineTraceSingleByChannel</span>(Hit, Start, End,
+        <span class="token type">ECC_Visibility</span>, Params)) {
+        <span class="token comment">// Apply damage to hit actor</span>
+        <span class="token keyword">if</span> (<span class="token keyword">AActor</span>* HitActor = Hit.GetActor()) {
+            <span class="token type">UGameplayStatics</span>::<span class="token function">ApplyDamage</span>(HitActor, Damage,
+                <span class="token keyword">nullptr</span>, GetOwner(), <span class="token keyword">nullptr</span>);
+        }
+    }
+}
+                        </code></pre>
+                        <button class="btn copy-btn" aria-label="Copy code">Copy</button>
+                    </article>
+
+                    <!-- Unreal: Animation State Machine -->
+                    <article class="snippet-card" data-lang="C++">
+                        <div class="snippet-header">
+                            <h4>Unreal: Animation Blueprint Helper</h4>
+                            <span class="lang-badge">C++</span>
+                        </div>
+                        <pre class="code-block"><code>
+<span class="token keyword">#include</span> <span class="token string">"Animation/AnimInstance.h"</span>
+<span class="token keyword">#include</span> <span class="token string">"GameFramework/CharacterMovementComponent.h"</span>
+
+<span class="token keyword">void</span> <span class="token keyword">UCharacterAnimInstance</span>::<span class="token function">NativeUpdateAnimation</span>(<span class="token keyword">float</span> DeltaSeconds) {
+    <span class="token keyword">Super</span>::NativeUpdateAnimation(DeltaSeconds);
+
+    <span class="token keyword">APawn</span>* Owner = TryGetPawnOwner();
+    <span class="token keyword">if</span> (!Owner) <span class="token keyword">return</span>;
+
+    <span class="token comment">// Calculate speed</span>
+    Speed = Owner-&gt;GetVelocity().Size();
+
+    <span class="token comment">// Get movement component</span>
+    <span class="token keyword">if</span> (<span class="token keyword">UCharacterMovementComponent</span>* MovComp =
+        Owner-&gt;FindComponentByClass&lt;<span class="token keyword">UCharacterMovementComponent</span>&gt;()) {
+        bIsInAir = MovComp-&gt;IsFalling();
+        bIsCrouching = MovComp-&gt;IsCrouching();
+    }
+
+    <span class="token comment">// Direction for strafe blendspace</span>
+    <span class="token type">FVector</span> Velocity = Owner-&gt;GetVelocity();
+    Direction = <span class="token function">CalculateDirection</span>(Velocity, Owner-&gt;GetActorRotation());
+}
+                        </code></pre>
+                        <button class="btn copy-btn" aria-label="Copy code">Copy</button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Collaborator Showcase Section -->
+        <section class="showcase">
+            <div class="container">
+                <h3>Collaborator Showcase</h3>
+                <div class="showcase-grid">
+                    <article class="showcase-card">
+                        <div class="showcase-avatar" aria-hidden="true">A</div>
+                        <div class="showcase-content">
+                            <h4>Amjad — Systems</h4>
+                            <p>Integrated C++ snippets and UX polish for code blocks.</p>
+                        </div>
+                    </article>
+                    <article class="showcase-card">
+                        <div class="showcase-avatar" aria-hidden="true">Q</div>
+                        <div class="showcase-content">
+                            <h4>Quinn — Frontend</h4>
+                            <p>Designed gradient borders and copy-to-clipboard effects.</p>
+                        </div>
+                    </article>
+                    <article class="showcase-card">
+                        <div class="showcase-avatar" aria-hidden="true">Y</div>
+                        <div class="showcase-content">
+                            <h4>Yousef — Gameplay</h4>
+                            <p>Provided AI FSM and ECS examples in modern C++.</p>
+                        </div>
+                    </article>
+                    <article class="showcase-card">
+                        <div class="showcase-avatar" aria-hidden="true">B</div>
+                        <div class="showcase-content">
+                            <h4>Bryan — Tools</h4>
+                            <p>Added AABB utilities and profiling helpers (ScopeTimer).</p>
+                        </div>
+                    </article>
+                    <article class="showcase-card">
+                        <div class="showcase-avatar" aria-hidden="true">A</div>
+                        <div class="showcase-content">
+                            <h4>Aiden — QA</h4>
+                            <p>Reviewed snippets for correctness and copy-readiness.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 GamePlan</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
