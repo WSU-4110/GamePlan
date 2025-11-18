@@ -69,12 +69,11 @@ class SearchManager {
         if (this.noResults) this.noResults.style.display = 'none';
         if (this.resultsCount) {
             const plural = results.length !== 1 ? 's' : '';
-            this.resultsCount.textContent =
-                `Found ${results.length} result${plural} for "${query}"`;
+            this.resultsCount.textContent = `Found ${results.length} result${plural} for "${query}"`;
         }
 
         // Create cards for each result
-        results.forEach(example => {
+        results.forEach((example) => {
             const card = this._createCard(example);
             this.resultsArea.appendChild(card);
         });

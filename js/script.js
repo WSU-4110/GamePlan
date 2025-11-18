@@ -1,12 +1,14 @@
 // GamePlan Website JavaScript
 
 // Connection to Supabase Database
-const SUPABASE_URL = "https://ggsuwucwbnnlspeyxcph.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdnc3V3dWN3Ym5ubHNwZXl4Y3BoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIyODgzMjgsImV4cCI6MjA3Nzg2NDMyOH0.Vat3PwtsCocNJkjBy4fdZkl8g6V2aSUgdHstCQvvXvM";
+const SUPABASE_URL = 'https://ggsuwucwbnnlspeyxcph.supabase.co';
+const SUPABASE_KEY =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdnc3V3dWN3Ym5ubHNwZXl4Y3BoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIyODgzMjgsImV4cCI6MjA3Nzg2NDMyOH0.Vat3PwtsCocNJkjBy4fdZkl8g6V2aSUgdHstCQvvXvM';
 // Only initialize Supabase in browser environment
-const supabaseClient = (typeof window !== 'undefined' && typeof supabase !== 'undefined')
-    ? supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
-    : null;
+const supabaseClient =
+    typeof window !== 'undefined' && typeof supabase !== 'undefined'
+        ? supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+        : null;
 
 // Database scripts for login page
 // create elements
@@ -25,7 +27,12 @@ if (signupForm && loginForm && logoutBtn && status && supabaseClient) {
         const email = document.getElementById('signup-email').value;
         const password = document.getElementById('signup-password').value;
 
-        const { data, error } = await supabaseClient.auth.signUp({ firstname, lastname, email, password });
+        const { data, error } = await supabaseClient.auth.signUp({
+            firstname,
+            lastname,
+            email,
+            password,
+        });
 
         if (error) {
             status.textContent = 'Error: ' + error.message;
@@ -36,18 +43,18 @@ if (signupForm && loginForm && logoutBtn && status && supabaseClient) {
 
     // login form
     loginForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const email = document.getElementById('login-email').value;
-      const password = document.getElementById('login-password').value;
+        e.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
 
-      const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+        const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
 
-      if (error) {
-        status.textContent = 'Error: ' + error.message;
-      } else {
-        status.textContent = `Logged in as ${data.user.email}`;
-        logoutBtn.style.display = 'block';
-      }
+        if (error) {
+            status.textContent = 'Error: ' + error.message;
+        } else {
+            status.textContent = `Logged in as ${data.user.email}`;
+            logoutBtn.style.display = 'block';
+        }
     });
 
     // logout
@@ -105,8 +112,11 @@ const conceptLibrary = {
     }
 }`,
                 links: [
-                    { label: 'Unity Docs: CharacterController', url: 'https://docs.unity3d.com/ScriptReference/CharacterController.html' }
-                ]
+                    {
+                        label: 'Unity Docs: CharacterController',
+                        url: 'https://docs.unity3d.com/ScriptReference/CharacterController.html',
+                    },
+                ],
             },
             unreal: {
                 title: 'Unreal Engine Implementation',
@@ -129,8 +139,11 @@ void APlayerCharacter::MoveForward(float Value)
     }
 }`,
                 links: [
-                    { label: 'Unreal Docs: CharacterMovementComponent', url: 'https://docs.unrealengine.com/5.0/en-US/character-movement-component-in-unreal-engine/' }
-                ]
+                    {
+                        label: 'Unreal Docs: CharacterMovementComponent',
+                        url: 'https://docs.unrealengine.com/5.0/en-US/character-movement-component-in-unreal-engine/',
+                    },
+                ],
             },
             godot: {
                 title: 'Godot Implementation',
@@ -162,14 +175,27 @@ func _input(event):
         pitch = clamp(pitch - event.relative.y * look_sensitivity, deg_to_rad(-80), deg_to_rad(80))
         $Camera3D.rotation.x = pitch`,
                 links: [
-                    { label: 'Godot Docs: CharacterBody3D', url: 'https://docs.godotengine.org/en/stable/classes/class_characterbody3d.html' }
-                ]
-            }
+                    {
+                        label: 'Godot Docs: CharacterBody3D',
+                        url: 'https://docs.godotengine.org/en/stable/classes/class_characterbody3d.html',
+                    },
+                ],
+            },
         },
         comments: [
-            { author: 'Jamie L.', role: 'Unity Dev', time: '2 days ago', text: 'Swapping in Cinemachine made the camera smoothing even better. Worth trying if you need advanced camera blending.' },
-            { author: 'Priya S.', role: 'Technical Designer', time: '5 days ago', text: 'If you enable sprinting, remember to adjust mouse sensitivity so it feels consistent.' }
-        ]
+            {
+                author: 'Jamie L.',
+                role: 'Unity Dev',
+                time: '2 days ago',
+                text: 'Swapping in Cinemachine made the camera smoothing even better. Worth trying if you need advanced camera blending.',
+            },
+            {
+                author: 'Priya S.',
+                role: 'Technical Designer',
+                time: '5 days ago',
+                text: 'If you enable sprinting, remember to adjust mouse sensitivity so it feels consistent.',
+            },
+        ],
     },
     'health-system': {
         title: 'Health System',
@@ -205,8 +231,11 @@ func _input(event):
     }
 }`,
                 links: [
-                    { label: 'Unity Events Overview', url: 'https://docs.unity3d.com/Manual/UnityEvents.html' }
-                ]
+                    {
+                        label: 'Unity Events Overview',
+                        url: 'https://docs.unity3d.com/Manual/UnityEvents.html',
+                    },
+                ],
             },
             unreal: {
                 title: 'Unreal Engine Implementation',
@@ -242,8 +271,11 @@ public:
     }
 };`,
                 links: [
-                    { label: 'Delegates in Unreal', url: 'https://docs.unrealengine.com/5.0/en-US/delegates-in-unreal-engine/' }
-                ]
+                    {
+                        label: 'Delegates in Unreal',
+                        url: 'https://docs.unrealengine.com/5.0/en-US/delegates-in-unreal-engine/',
+                    },
+                ],
             },
             godot: {
                 title: 'Godot Implementation',
@@ -266,14 +298,27 @@ func heal(amount: int) -> void:
     current_health = min(current_health + amount, max_health)
     emit_signal("health_changed", current_health, max_health)`,
                 links: [
-                    { label: 'Godot Signals Guide', url: 'https://docs.godotengine.org/en/stable/tutorials/scripting/signals.html' }
-                ]
-            }
+                    {
+                        label: 'Godot Signals Guide',
+                        url: 'https://docs.godotengine.org/en/stable/tutorials/scripting/signals.html',
+                    },
+                ],
+            },
         },
         comments: [
-            { author: 'Morgan K.', role: 'Gameplay Programmer', time: '1 day ago', text: 'I wired the Unreal delegate into a widget to trigger a slow-motion effect on death. Super flexible setup!' },
-            { author: 'Chen W.', role: 'UI Engineer', time: '1 week ago', text: 'In Unity, consider raising an event when health crosses certain thresholds to update status effects.' }
-        ]
+            {
+                author: 'Morgan K.',
+                role: 'Gameplay Programmer',
+                time: '1 day ago',
+                text: 'I wired the Unreal delegate into a widget to trigger a slow-motion effect on death. Super flexible setup!',
+            },
+            {
+                author: 'Chen W.',
+                role: 'UI Engineer',
+                time: '1 week ago',
+                text: 'In Unity, consider raising an event when health crosses certain thresholds to update status effects.',
+            },
+        ],
     },
     'platformer-physics': {
         title: '2D Platformer Physics',
@@ -328,8 +373,11 @@ func heal(amount: int) -> void:
     bool IsGrounded() => Physics2D.Raycast(transform.position, Vector2.down, 0.1f, LayerMask.GetMask("Ground"));
 }`,
                 links: [
-                    { label: 'Unity Docs: Rigidbody2D', url: 'https://docs.unity3d.com/ScriptReference/Rigidbody2D.html' }
-                ]
+                    {
+                        label: 'Unity Docs: Rigidbody2D',
+                        url: 'https://docs.unity3d.com/ScriptReference/Rigidbody2D.html',
+                    },
+                ],
             },
             unreal: {
                 title: 'Unreal Engine Implementation',
@@ -356,8 +404,11 @@ void APlatformerCharacter::TryExecuteJump()
     }
 }`,
                 links: [
-                    { label: 'Paper2D Platformer Guide', url: 'https://docs.unrealengine.com/5.0/en-US/creating-2d-platformer-game-in-unreal-engine/' }
-                ]
+                    {
+                        label: 'Paper2D Platformer Guide',
+                        url: 'https://docs.unrealengine.com/5.0/en-US/creating-2d-platformer-game-in-unreal-engine/',
+                    },
+                ],
             },
             godot: {
                 title: 'Godot Implementation',
@@ -393,22 +444,34 @@ func _physics_process(delta):
     velocity.y += 900 * delta
     move_and_slide()`,
                 links: [
-                    { label: 'Godot Docs: CharacterBody2D', url: 'https://docs.godotengine.org/en/stable/classes/class_characterbody2d.html' }
-                ]
-            }
+                    {
+                        label: 'Godot Docs: CharacterBody2D',
+                        url: 'https://docs.godotengine.org/en/stable/classes/class_characterbody2d.html',
+                    },
+                ],
+            },
         },
         comments: [
-            { author: 'Liam R.', role: 'Indie Dev', time: '4 hours ago', text: 'Tuning gravity is key—try incrementally increasing it until the jumps feel snappy.' },
-            { author: 'Mina P.', role: 'Godot Contributor', time: '3 days ago', text: 'If you add variable jump height, clamp the upward velocity so players can feather jumps.' }
-        ]
-    }
+            {
+                author: 'Liam R.',
+                role: 'Indie Dev',
+                time: '4 hours ago',
+                text: 'Tuning gravity is key—try incrementally increasing it until the jumps feel snappy.',
+            },
+            {
+                author: 'Mina P.',
+                role: 'Godot Contributor',
+                time: '3 days ago',
+                text: 'If you add variable jump height, clamp the upward velocity so players can feather jumps.',
+            },
+        ],
+    },
 };
 
 const commentStore = {};
 
 // Wait for the page to load completely before running our code
-document.addEventListener('DOMContentLoaded', function() {
-
+document.addEventListener('DOMContentLoaded', function () {
     // Set up all the interactive features
     setupMobileMenu();
     setupBrowseFilters();
@@ -426,15 +489,15 @@ function setupMobileMenu() {
     // Only run if both elements exist on the page
     if (hamburger && menu) {
         // When hamburger is clicked, show/hide menu
-        hamburger.addEventListener('click', function() {
+        hamburger.addEventListener('click', function () {
             hamburger.classList.toggle('active');
             menu.classList.toggle('active');
         });
 
         // Close menu when a link is clicked
         const menuLinks = document.querySelectorAll('.nav-link');
-        menuLinks.forEach(function(link) {
-            link.addEventListener('click', function() {
+        menuLinks.forEach(function (link) {
+            link.addEventListener('click', function () {
                 hamburger.classList.remove('active');
                 menu.classList.remove('active');
             });
@@ -451,7 +514,6 @@ function setupBrowseFilters() {
 
     // Only run if we're on the browse page
     if (engineFilter && categoryFilter && examplesGrid) {
-
         // Function to filter the examples
         function filterExamples() {
             const selectedEngine = engineFilter.value;
@@ -459,13 +521,14 @@ function setupBrowseFilters() {
             const allExamples = examplesGrid.querySelectorAll('.example-card');
 
             // Go through each example card
-            allExamples.forEach(function(example) {
+            allExamples.forEach(function (example) {
                 const cardEngine = example.getAttribute('data-engine');
                 const cardCategory = example.getAttribute('data-category');
 
                 // Check if this card matches the selected filters
-                const engineMatches = (selectedEngine === 'all' || cardEngine === selectedEngine);
-                const categoryMatches = (selectedCategory === 'all' || cardCategory === selectedCategory);
+                const engineMatches = selectedEngine === 'all' || cardEngine === selectedEngine;
+                const categoryMatches =
+                    selectedCategory === 'all' || cardCategory === selectedCategory;
 
                 // Show or hide the card based on filters
                 if (engineMatches && categoryMatches) {
@@ -511,7 +574,7 @@ function setupSearch() {
         resultsArea,
         resultsInfo,
         resultsCount,
-        noResults
+        noResults,
     });
 
     // Optional: Switch to API if backend is ready
@@ -528,7 +591,7 @@ function setupSearch() {
     searchButton.addEventListener('click', doSearch);
 
     // Set up search when Enter key is pressed
-    searchInput.addEventListener('keypress', function(e) {
+    searchInput.addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
             doSearch();
         }
@@ -536,8 +599,8 @@ function setupSearch() {
 
     // Set up suggestion tags (quick search buttons)
     const suggestionTags = document.querySelectorAll('.suggestion-tag');
-    suggestionTags.forEach(function(tag) {
-        tag.addEventListener('click', function() {
+    suggestionTags.forEach(function (tag) {
+        tag.addEventListener('click', function () {
             const searchTerm = this.getAttribute('data-search');
             searchInput.value = searchTerm;
             doSearch();
@@ -550,18 +613,17 @@ function setupButtons() {
     // Find all buttons on the page
     const allButtons = document.querySelectorAll('.btn');
 
-    allButtons.forEach(function(button) {
+    allButtons.forEach(function (button) {
         const buttonText = button.textContent;
 
         // Only handle View Code and Download buttons
         if (buttonText.includes('Download')) {
-
             // Remove any existing click handlers to avoid duplicates
             const newButton = button.cloneNode(true);
             button.parentNode.replaceChild(newButton, button);
 
             // Add click handler to the new button
-            newButton.addEventListener('click', function(e) {
+            newButton.addEventListener('click', function (e) {
                 e.preventDefault(); // Don't follow any links
 
                 const originalText = this.textContent;
@@ -571,7 +633,7 @@ function setupButtons() {
                 this.disabled = true;
 
                 // After 1 second, show placeholder message
-                setTimeout(function() {
+                setTimeout(function () {
                     newButton.textContent = originalText;
                     newButton.disabled = false;
                     alert('This feature will be available when the database is connected!');
@@ -608,7 +670,7 @@ function setupConceptModal() {
     }
 
     function updateEngineTabs() {
-        engineTabs.forEach(function(tab) {
+        engineTabs.forEach(function (tab) {
             const isActive = tab.dataset.engine === activeEngine;
             tab.classList.toggle('active', isActive);
             tab.setAttribute('aria-selected', String(isActive));
@@ -623,7 +685,8 @@ function setupConceptModal() {
 
         if (!engineContent) {
             engineTitleEl.textContent = 'Engine data unavailable';
-            engineSummaryEl.textContent = 'This concept is not yet documented for the selected engine.';
+            engineSummaryEl.textContent =
+                'This concept is not yet documented for the selected engine.';
             engineCodeEl.textContent = '// Coming soon';
             engineLinksEl.innerHTML = '';
             return;
@@ -635,7 +698,7 @@ function setupConceptModal() {
 
         engineLinksEl.innerHTML = '';
         if (Array.isArray(engineContent.links) && engineContent.links.length > 0) {
-            engineContent.links.forEach(function(link) {
+            engineContent.links.forEach(function (link) {
                 const anchor = document.createElement('a');
                 anchor.href = link.url;
                 anchor.target = '_blank';
@@ -650,7 +713,7 @@ function setupConceptModal() {
     function getComments(conceptId) {
         if (!commentStore[conceptId]) {
             const baseComments = conceptLibrary[conceptId]?.comments || [];
-            commentStore[conceptId] = baseComments.map(function(comment) {
+            commentStore[conceptId] = baseComments.map(function (comment) {
                 return Object.assign({}, comment);
             });
         }
@@ -670,7 +733,7 @@ function setupConceptModal() {
             return;
         }
 
-        comments.forEach(function(comment) {
+        comments.forEach(function (comment) {
             const card = document.createElement('article');
             card.className = 'comment-card';
 
@@ -738,8 +801,8 @@ function setupConceptModal() {
     }
 
     // Hook up engine tab switching
-    engineTabs.forEach(function(tab) {
-        tab.addEventListener('click', function() {
+    engineTabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
             const newEngine = tab.dataset.engine;
             if (!activeConcept || newEngine === activeEngine) return;
 
@@ -756,26 +819,26 @@ function setupConceptModal() {
     });
 
     // Hook up close buttons and overlay
-    closeButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
+    closeButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
             setModalVisibility(false);
         });
     });
 
     if (overlay) {
-        overlay.addEventListener('click', function() {
+        overlay.addEventListener('click', function () {
             setModalVisibility(false);
         });
     }
 
-    document.addEventListener('keydown', function(event) {
+    document.addEventListener('keydown', function (event) {
         if (event.key === 'Escape' && modal.classList.contains('open')) {
             setModalVisibility(false);
         }
     });
 
     if (commentFormEl && commentInputEl) {
-        commentFormEl.addEventListener('submit', function(event) {
+        commentFormEl.addEventListener('submit', function (event) {
             event.preventDefault();
             if (!activeConcept) return;
 
@@ -787,7 +850,7 @@ function setupConceptModal() {
                 author: 'Alex Mercer',
                 role: 'Creator',
                 time: 'Just now',
-                text: text
+                text: text,
             });
 
             renderComments();
@@ -797,8 +860,8 @@ function setupConceptModal() {
 
     // Connect example cards to modal
     const conceptButtons = document.querySelectorAll('[data-open-concept]');
-    conceptButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
+    conceptButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
             const card = button.closest('.example-card');
             if (!card) return;
 
@@ -815,7 +878,7 @@ if (typeof module !== 'undefined' && module.exports) {
     const getComments = (conceptId) => {
         if (!commentStore[conceptId]) {
             const baseComments = conceptLibrary[conceptId]?.comments || [];
-            commentStore[conceptId] = baseComments.map(c => Object.assign({}, c));
+            commentStore[conceptId] = baseComments.map((c) => Object.assign({}, c));
         }
         return commentStore[conceptId];
     };
@@ -834,17 +897,17 @@ if (typeof module !== 'undefined' && module.exports) {
     const filterExamples = (engine, category, grid) => {
         if (!grid) return;
         const allExamples = grid.querySelectorAll('.example-card');
-        allExamples.forEach(example => {
+        allExamples.forEach((example) => {
             const cardEngine = example.getAttribute('data-engine');
             const cardCategory = example.getAttribute('data-category');
-            const engineMatches = (engine === 'all' || cardEngine === engine);
-            const categoryMatches = (category === 'all' || cardCategory === category);
-            example.style.display = (engineMatches && categoryMatches) ? 'block' : 'none';
+            const engineMatches = engine === 'all' || cardEngine === engine;
+            const categoryMatches = category === 'all' || cardCategory === category;
+            example.style.display = engineMatches && categoryMatches ? 'block' : 'none';
         });
     };
 
     const updateEngineTabs = (tabs, engine) => {
-        tabs.forEach(tab => {
+        tabs.forEach((tab) => {
             const isActive = tab.dataset.engine === engine;
             if (isActive) {
                 tab.classList.add('active');
@@ -861,7 +924,9 @@ if (typeof module !== 'undefined' && module.exports) {
 
         if (!engineContent) {
             if (titleEl) titleEl.textContent = 'Engine data unavailable';
-            if (summaryEl) summaryEl.textContent = 'This concept is not yet documented for the selected engine.';
+            if (summaryEl)
+                summaryEl.textContent =
+                    'This concept is not yet documented for the selected engine.';
             if (codeEl) codeEl.textContent = '// Coming soon';
             if (linksEl) linksEl.innerHTML = '';
             return;
@@ -874,7 +939,7 @@ if (typeof module !== 'undefined' && module.exports) {
         if (linksEl) {
             linksEl.innerHTML = '';
             if (Array.isArray(engineContent.links) && engineContent.links.length > 0) {
-                engineContent.links.forEach(link => {
+                engineContent.links.forEach((link) => {
                     const anchor = document.createElement('a');
                     anchor.href = link.url;
                     anchor.target = '_blank';
@@ -909,6 +974,6 @@ if (typeof module !== 'undefined' && module.exports) {
         filterExamples,
         updateEngineTabs,
         renderEnginePanel,
-        openConcept
+        openConcept,
     };
 }

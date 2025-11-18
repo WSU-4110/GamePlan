@@ -1,29 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Login Page</title>
-</head>
-<body>
-  <h1>Login & Signup</h1>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login Page</title>
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="nav-container">
+                    <div class="nav-logo">
+                        <h1>GamePlan</h1>
+                    </div>
+                    <div class="nav-right">
+                        <ul class="nav-menu">
+                            <li class="nav-item">
+                                <a href="index.html" class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="browse.html" class="nav-link">Browse Code</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="search.html" class="nav-link">Search</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="about.html" class="nav-link">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="login.html" class="nav-link active">Login</a>
+                            </li>
+                        </ul>
+                        <a class="nav-profile" href="profile.html">
+                            <span class="profile-avatar" aria-hidden="true">GP</span>
+                            <span class="profile-info">
+                                <span class="profile-name">Alex Mercer</span>
+                                <span class="profile-role">Creator</span>
+                            </span>
+                        </a>
+                        <div class="hamburger">
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
 
-  <h2>Sign Up</h2>
-  <form id="signup-form">
-    <input type="email" id="signup-email" placeholder="Email" required />
-    <input type="password" id="signup-password" placeholder="Password" required />
-    <button type="submit">Create Account</button>
-  </form>
+        <h1>Login & Signup</h1>
 
-  <h2>Login</h2>
-  <form id="login-form">
-    <input type="email" id="login-email" placeholder="Email" required />
-    <input type="password" id="login-password" placeholder="Password" required />
-    <button type="submit">Log In</button>
-  </form>
+        <h2>Sign Up</h2>
+        <form id="signup-form">
+            <input type="email" id="signup-email" placeholder="Email" required />
+            <input type="password" id="signup-password" placeholder="Password" required />
+            <button type="submit">Create Account</button>
+        </form>
 
-  <button id="logout-btn">Log Out</button>
-  <p id="status"></p>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="script.js" defer></script>
-</body>
+        <h2>Login</h2>
+        <form id="login-form">
+            <input type="email" id="login-email" placeholder="Email" required />
+            <input type="password" id="login-password" placeholder="Password" required />
+            <button type="submit">Log In</button>
+        </form>
+
+        <button id="logout-btn">Log Out</button>
+        <p id="status"></p>
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script src="js/script.js"></script>
+    </body>
 </html>

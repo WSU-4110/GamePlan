@@ -1,150 +1,157 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile - GamePlan</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <header>
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="nav-logo">
-                    <h1>GamePlan</h1>
-                </div>
-                <div class="nav-right">
-                    <ul class="nav-menu">
-                        <li class="nav-item">
-                            <a href="index.html" class="nav-link">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="browse.html" class="nav-link">Browse Code</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="search.html" class="nav-link">Search</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="about.html" class="nav-link">About</a>
-                        </li>
-                    </ul>
-                    <a class="nav-profile active" href="profile.html" aria-current="page">
-                        <span class="profile-avatar" aria-hidden="true">GP</span>
-                        <span class="profile-info">
-                            <span class="profile-name">Alex Mercer</span>
-                            <span class="profile-role">Creator</span>
-                        </span>
-                    </a>
-                    <div class="hamburger">
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                        <span class="bar"></span>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Profile - GamePlan</title>
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="nav-container">
+                    <div class="nav-logo">
+                        <h1>GamePlan</h1>
                     </div>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <main>
-        <section class="page-header">
-            <div class="container">
-                <h2>Profile</h2>
-                <p>Manage your GamePlan identity and keep track of your favorite concepts</p>
-            </div>
-        </section>
-
-        <section class="profile-overview">
-            <div class="container profile-grid">
-                <div class="profile-card">
-                    <div class="profile-card-header">
-                        <span class="profile-avatar profile-avatar-lg" aria-hidden="true">GP</span>
-                        <div>
-                            <h3>Alex Mercer</h3>
-                            <p class="profile-role-tag">Creator</p>
+                    <div class="nav-right">
+                        <ul class="nav-menu">
+                            <li class="nav-item">
+                                <a href="index.html" class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="browse.html" class="nav-link">Browse Code</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="search.html" class="nav-link">Search</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="about.html" class="nav-link">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="login.html" class="nav-link">Login</a>
+                            </li>
+                        </ul>
+                        <a class="nav-profile active" href="profile.html" aria-current="page">
+                            <span class="profile-avatar" aria-hidden="true">GP</span>
+                            <span class="profile-info">
+                                <span class="profile-name">Alex Mercer</span>
+                                <span class="profile-role">Creator</span>
+                            </span>
+                        </a>
+                        <div class="hamburger">
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                            <span class="bar"></span>
                         </div>
                     </div>
-                    <div class="profile-card-body">
-                        <dl class="profile-meta">
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section class="page-header">
+                <div class="container">
+                    <h2>Profile</h2>
+                    <p>Manage your GamePlan identity and keep track of your favorite concepts</p>
+                </div>
+            </section>
+
+            <section class="profile-overview">
+                <div class="container profile-grid">
+                    <div class="profile-card">
+                        <div class="profile-card-header">
+                            <span class="profile-avatar profile-avatar-lg" aria-hidden="true"
+                                >GP</span
+                            >
                             <div>
-                                <dt>Email</dt>
-                                <dd>alex.mercer@example.com</dd>
+                                <h3>Alex Mercer</h3>
+                                <p class="profile-role-tag">Creator</p>
                             </div>
-                            <div>
-                                <dt>Member Since</dt>
-                                <dd>January 2025</dd>
-                            </div>
-                            <div>
-                                <dt>Preferred Engine</dt>
-                                <dd>Unity</dd>
-                            </div>
-                        </dl>
-                        <button class="btn btn-primary">Edit Profile</button>
+                        </div>
+                        <div class="profile-card-body">
+                            <dl class="profile-meta">
+                                <div>
+                                    <dt>Email</dt>
+                                    <dd>alex.mercer@example.com</dd>
+                                </div>
+                                <div>
+                                    <dt>Member Since</dt>
+                                    <dd>January 2025</dd>
+                                </div>
+                                <div>
+                                    <dt>Preferred Engine</dt>
+                                    <dd>Unity</dd>
+                                </div>
+                            </dl>
+                            <button class="btn btn-primary">Edit Profile</button>
+                        </div>
+                    </div>
+
+                    <div class="profile-card">
+                        <h3>Saved Concepts</h3>
+                        <ul class="profile-list">
+                            <li>
+                                <span>
+                                    <strong>First Person Controller</strong>
+                                    <small>Unity, Unreal Engine</small>
+                                </span>
+                                <a href="browse.html" class="btn btn-outline btn-sm">View</a>
+                            </li>
+                            <li>
+                                <span>
+                                    <strong>2D Platformer Physics</strong>
+                                    <small>Godot</small>
+                                </span>
+                                <a href="browse.html" class="btn btn-outline btn-sm">View</a>
+                            </li>
+                            <li>
+                                <span>
+                                    <strong>Inventory System</strong>
+                                    <small>Unity (Planned)</small>
+                                </span>
+                                <button class="btn btn-outline btn-sm" disabled>Coming Soon</button>
+                            </li>
+                        </ul>
                     </div>
                 </div>
+            </section>
 
-                <div class="profile-card">
-                    <h3>Saved Concepts</h3>
-                    <ul class="profile-list">
-                        <li>
-                            <span>
-                                <strong>First Person Controller</strong>
-                                <small>Unity, Unreal Engine</small>
-                            </span>
-                            <a href="browse.html" class="btn btn-outline btn-sm">View</a>
-                        </li>
-                        <li>
-                            <span>
-                                <strong>2D Platformer Physics</strong>
-                                <small>Godot</small>
-                            </span>
-                            <a href="browse.html" class="btn btn-outline btn-sm">View</a>
-                        </li>
-                        <li>
-                            <span>
-                                <strong>Inventory System</strong>
-                                <small>Unity (Planned)</small>
-                            </span>
-                            <button class="btn btn-outline btn-sm" disabled>Coming Soon</button>
-                        </li>
-                    </ul>
+            <section class="profile-achievements">
+                <div class="container">
+                    <h3>Achievements</h3>
+                    <p class="achievements-intro">
+                        Milestones you’ve unlocked while exploring GamePlan.
+                    </p>
+                    <div class="achievements-grid">
+                        <article class="achievement-card">
+                            <div class="achievement-icon" aria-hidden="true">🏆</div>
+                            <h4>Concept Curator</h4>
+                            <p>Saved 10+ concepts across multiple engines.</p>
+                            <span class="achievement-meta">Unlocked • Oct 10, 2025</span>
+                        </article>
+                        <article class="achievement-card">
+                            <div class="achievement-icon" aria-hidden="true">🧠</div>
+                            <h4>Engine Explorer</h4>
+                            <p>Viewed examples for Unity, Unreal, and Godot in a single session.</p>
+                            <span class="achievement-meta">Unlocked • Sep 24, 2025</span>
+                        </article>
+                        <article class="achievement-card">
+                            <div class="achievement-icon" aria-hidden="true">💬</div>
+                            <h4>Community Contributor</h4>
+                            <p>Posted feedback on 3 different concepts.</p>
+                            <span class="achievement-meta">Progress • 2/3 comments</span>
+                        </article>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </main>
 
-        <section class="profile-achievements">
+        <footer>
             <div class="container">
-                <h3>Achievements</h3>
-                <p class="achievements-intro">Milestones you’ve unlocked while exploring GamePlan.</p>
-                <div class="achievements-grid">
-                    <article class="achievement-card">
-                        <div class="achievement-icon" aria-hidden="true">🏆</div>
-                        <h4>Concept Curator</h4>
-                        <p>Saved 10+ concepts across multiple engines.</p>
-                        <span class="achievement-meta">Unlocked • Oct 10, 2025</span>
-                    </article>
-                    <article class="achievement-card">
-                        <div class="achievement-icon" aria-hidden="true">🧠</div>
-                        <h4>Engine Explorer</h4>
-                        <p>Viewed examples for Unity, Unreal, and Godot in a single session.</p>
-                        <span class="achievement-meta">Unlocked • Sep 24, 2025</span>
-                    </article>
-                    <article class="achievement-card">
-                        <div class="achievement-icon" aria-hidden="true">💬</div>
-                        <h4>Community Contributor</h4>
-                        <p>Posted feedback on 3 different concepts.</p>
-                        <span class="achievement-meta">Progress • 2/3 comments</span>
-                    </article>
-                </div>
+                <p>&copy; 2025 GamePlan</p>
             </div>
-        </section>
-    </main>
+        </footer>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 GamePlan</p>
-        </div>
-    </footer>
-
-    <script src="js/script.js"></script>
-</body>
+        <script src="js/script.js"></script>
+    </body>
 </html>

@@ -69,7 +69,9 @@ body {
     padding: 0.45rem 0.9rem;
     border-radius: 999px;
     border: 1px solid rgba(255, 255, 255, 0.15);
-    transition: background 0.2s ease, border 0.2s ease;
+    transition:
+        background 0.2s ease,
+        border 0.2s ease;
     text-decoration: none;
     color: inherit;
 }
@@ -691,7 +693,9 @@ section {
     padding: 2rem;
     visibility: hidden;
     opacity: 0;
-    transition: opacity 0.25s ease, visibility 0.25s ease;
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
     z-index: 2000;
 }
 

@@ -19,32 +19,32 @@ class SampleDataStrategy extends DataSourceStrategy {
                 title: 'First Person Controller',
                 engine: 'Unity',
                 description: 'Basic first-person movement controller with mouse look',
-                keywords: ['movement', 'player', 'controller', 'fps']
+                keywords: ['movement', 'player', 'controller', 'fps'],
             },
             {
                 title: 'Health System',
                 engine: 'Unreal Engine',
                 description: 'Complete health and damage system with UI integration',
-                keywords: ['health', 'damage', 'combat', 'ui']
+                keywords: ['health', 'damage', 'combat', 'ui'],
             },
             {
                 title: '2D Platformer Physics',
                 engine: 'Godot',
                 description: 'Smooth 2D platformer movement with jump mechanics',
-                keywords: ['platformer', 'physics', '2d', 'jump']
+                keywords: ['platformer', 'physics', '2d', 'jump'],
             },
             {
                 title: 'Inventory System',
                 engine: 'Unity',
                 description: 'Drag and drop inventory with tooltips',
-                keywords: ['inventory', 'ui', 'drag', 'items']
+                keywords: ['inventory', 'ui', 'drag', 'items'],
             },
             {
                 title: 'Save System',
                 engine: 'Unity',
                 description: 'Save and load game data with JSON',
-                keywords: ['save', 'load', 'data', 'json']
-            }
+                keywords: ['save', 'load', 'data', 'json'],
+            },
         ];
     }
 
@@ -55,10 +55,10 @@ class SampleDataStrategy extends DataSourceStrategy {
 
     _filterLocal(data, searchText) {
         const lowerQuery = searchText.toLowerCase();
-        return data.filter(example => {
+        return data.filter((example) => {
             const titleMatch = example.title.toLowerCase().includes(lowerQuery);
             const descMatch = example.description.toLowerCase().includes(lowerQuery);
-            const keywordMatch = example.keywords.some(kw =>
+            const keywordMatch = example.keywords.some((kw) =>
                 kw.toLowerCase().includes(lowerQuery)
             );
             return titleMatch || descMatch || keywordMatch;
@@ -79,10 +79,9 @@ class APIDataStrategy extends DataSourceStrategy {
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), this.timeout);
 
-            const response = await fetch(
-                `${this.apiEndpoint}?q=${encodeURIComponent(query)}`,
-                { signal: controller.signal }
-            );
+            const response = await fetch(`${this.apiEndpoint}?q=${encodeURIComponent(query)}`, {
+                signal: controller.signal,
+            });
 
             clearTimeout(timeoutId);
 
@@ -110,6 +109,6 @@ if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         DataSourceStrategy,
         SampleDataStrategy,
-        APIDataStrategy
+        APIDataStrategy,
     };
 }
