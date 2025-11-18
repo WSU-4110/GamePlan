@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Community - GamePlan</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .community-container { width: 80%; max-width: 900px; margin: 40px auto; }
+    h1 { text-align:center; color:white; margin-bottom:18px; }
+    .comment-box, .reply-box { display:flex; flex-direction:column; margin-bottom:16px; }
+    textarea { width:100%; padding:10px; border-radius:6px; border:none; resize:vertical; min-height:60px; }
+    button { margin-top:8px; padding:8px 12px; border:none; background:#4CAF50; color:white; cursor:pointer; border-radius:6px; }
+    .comment { background:#2a2a2a; padding:14px; border-radius:8px; margin-bottom:12px; color:white; }
+    .reply { background:#3b3b3b; padding:10px; border-radius:6px; margin-left:24px; margin-top:8px; color:white; }
+    .reply-btn { background:#2196F3; margin-top:10px; }
+    .meta { font-size:12px; color:#bbb; margin-bottom:8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="browse.html">Browse</a>
+      <a href="search.html">Search</a>
+      <a href="profile.html">Profile</a>
+      <a href="community.html" class="active">Community</a>
+    </nav>
+  </header>
+
+  <main class="community-container">
+    <h1>Community Discussion</h1>
+
+    <div class="comment-box">
+      <textarea id="newComment" placeholder="Write a comment..."></textarea>
+      <button id="postComment">Post Comment</button>
+    </div>
+
+    <div id="commentSection"></div>
+  </main>
+
+  <!-- Firebase scripts using ES modules (no build tools needed) -->
+  <script type="module">
+    // 1) Replace the firebaseConfig object below with your project's config from the Firebase console
+    const firebaseConfig = {
+  apiKey: "AIzaSyCIaWxcsA9tuA98dybeeYdhXvr9-J3UXnI",
+  authDomain: "community-csc4110.firebaseapp.com",
+  projectId: "community-csc4110",
+  storageBucket: "community-csc4110.firebasestorage.app",
+  messagingSenderId: "24914636358",
+  appId: "1:24914636358:web:e05a084885276481bce447",
+  measurementId: "G-X7BFR48XRS"
+};
+
+    // 2) Import the modular SDK from the CDN
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+    import {
+      getFirestore, collection, addDoc, serverTimestamp,
+      query, orderBy, onSnapshot, where
+    } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+
+    // 3) Init Firebase & Firestore
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // DOM
+    const postBtn = document.getElementById('postComment');
+    const newComment = document.getElementById('newComment');
+    const commentSection = document.getElementById('commentSection');
+
+    // Add comment (top-level comment => parentId: null)
+    postBtn.addEventListener('click', async () => {
+      const text = newComment.value.trim();
+      if (!text) return;
+      await addDoc(collection(db, "comments"), {
+        text,
+        parentId: null,
+        createdAt: serverTimestamp()
+      });
+      newComment.value = "";
+    });
+
+    // Render utility
+    function renderComment(doc, repliesMap) {
+      // doc is a Firestore document snapshot
+      const data = doc.data();
+      const id = doc.id;
+      const div = document.createElement('div');
+      div.className = 'comment';
+      const timeText = data.createdAt && data.createdAt.toDate ? new Date(data.createdAt.toDate()).toLocaleString() : '';
+      div.innerHTML = `
+        <div class="meta">#${id} ${timeText}</div>
+        <p>${escapeHtml(data.text)}</p>
+        <button class="reply-btn" data-id="${id}">Reply</button>
+        <div id="replyContainer-${id}" style="display:none; margin-top:10px;">
+          <textarea id="replyBox-${id}" placeholder="Write a reply..."></textarea>
+          <button class="post-reply" data-id="${id}">Post Reply</button>
+        </div>
+      `;
+
+      // Append replies (if any)
+      const replies = repliesMap[id] || [];
+      replies.forEach(r => {
+        const rDiv = document.createElement('div');
+        rDiv.className = 'reply';
+        const rTime = r.createdAt && r.createdAt.toDate ? new Date(r.createdAt.toDate()).toLocaleString() : '';
+        rDiv.innerHTML = `<div class="meta">${rTime}</div><p>${escapeHtml(r.text)}</p>`;
+        div.appendChild(rDiv);
+      });
+
+      return div;
+    }
+
+    // Escape HTML to avoid XSS
+    function escapeHtml(s) {
+      return (s || '').replace(/[&<>"']/g, function(m) {
+        return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];
+      });
+    }
+
+    // Real-time listener: get all comments ordered by createdAt
+    // We'll fetch all docs, then separate top-level comments and replies
+    const q = query(collection(db, "comments"), orderBy("createdAt", "asc"));
+    onSnapshot(q, (snapshot) => {
+      // Build arrays
+      const docs = [];
+      snapshot.forEach(doc => docs.push({ id: doc.id, doc }));
+      // Map replies by parentId
+      const repliesMap = {};
+      const topLevel = [];
+      docs.forEach(item => {
+        const data = item.doc.data();
+        if (data.parentId) {
+          repliesMap[data.parentId] = repliesMap[data.parentId] || [];
+          repliesMap[data.parentId].push({ id: item.id, ...data });
+        } else {
+          topLevel.push(item.doc);
+        }
+      });
+
+      // Clear and render
+      commentSection.innerHTML = "";
+      topLevel.forEach(doc => {
+        const c = renderComment(doc, repliesMap);
+        commentSection.appendChild(c);
+      });
+
+      // Hook reply buttons
+      document.querySelectorAll('.reply-btn').forEach(btn => {
+        btn.onclick = (e) => {
+          const id = e.currentTarget.dataset.id;
+          const cont = document.getElementById(`replyContainer-${id}`);
+          cont.style.display = cont.style.display === 'none' ? 'block' : 'none';
+        };
+      });
+
+      document.querySelectorAll('.post-reply').forEach(btn => {
+        btn.onclick = async (e) => {
+          const id = e.currentTarget.dataset.id;
+          const box = document.getElementById(`replyBox-${id}`);
+          const text = box.value.trim();
+          if (!text) return;
+          await addDoc(collection(db, "comments"), {
+            text,
+            parentId: id,
+            createdAt: serverTimestamp()
+          });
+          box.value = "";
+        };
+      });
+    });
+
+  </script>
+</body>
+</html>
