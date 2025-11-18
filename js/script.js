@@ -19,6 +19,19 @@ const status = document.getElementById('status');
 
 // Only run login page code if elements exist
 if (signupForm && loginForm && logoutBtn && status && supabaseClient) {
+    // Toggle password visibility for a modern auth experience
+    const passwordToggles = document.querySelectorAll('[data-password-toggle]');
+    passwordToggles.forEach((toggle) => {
+        const inputId = toggle.getAttribute('data-password-toggle');
+        const input = document.getElementById(inputId);
+        if (!input) return;
+        toggle.addEventListener('click', () => {
+            const isHidden = input.getAttribute('type') === 'password';
+            input.setAttribute('type', isHidden ? 'text' : 'password');
+            toggle.textContent = isHidden ? 'Hide' : 'Show';
+        });
+    });
+
     // signup form
     signupForm.addEventListener('submit', async (e) => {
         e.preventDefault();

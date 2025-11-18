@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Explore Code - GamePlan</title>
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="nav-container">
+                    <div class="nav-logo">
+                        <h1>GamePlan</h1>
+                    </div>
+                    <div class="nav-right">
+                        <ul class="nav-menu">
+                            <li class="nav-item">
+                                <a href="index.html" class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="explore.html" class="nav-link active">Explore</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="about.html" class="nav-link">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="login.html" class="nav-link">Login</a>
+                            </li>
+                        </ul>
+                        <a class="nav-profile" href="profile.html">
+                            <span class="profile-avatar" aria-hidden="true">GP</span>
+                            <span class="profile-info">
+                                <span class="profile-name">Alex Mercer</span>
+                                <span class="profile-role">Creator</span>
+                            </span>
+                        </a>
+                        <div class="hamburger">
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section class="page-header">
+                <div class="container">
+                    <h2>Explore Code Examples</h2>
+                    <p>Search and filter game development code by engine and category</p>
+                </div>
+            </section>
+
+            <section class="filters">
+                <div class="container">
+                    <div class="filter-controls">
+                        <div class="filter-group">
+                            <label for="engine-filter">Engine:</label>
+                            <select id="engine-filter" class="filter-select">
+                                <option value="all">All Engines</option>
+                                <option value="unity">Unity</option>
+                                <option value="unreal">Unreal Engine</option>
+                                <option value="godot">Godot</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="category-filter">Category:</label>
+                            <select id="category-filter" class="filter-select">
+                                <option value="all">All Categories</option>
+                                <option value="movement">Player Movement</option>
+                                <option value="combat">Combat Systems</option>
+                                <option value="ui">User Interface</option>
+                                <option value="audio">Audio</option>
+                                <option value="physics">Physics</option>
+                                <option value="ai">AI & NPCs</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="code-examples">
+                <div class="container">
+                    <div class="examples-grid" id="examples-grid">
+                        <div
+                            class="example-card"
+                            data-engine="unity"
+                            data-category="movement"
+                            data-concept="first-person-controller"
+                        >
+                            <h4>First Person Controller</h4>
+                            <p class="engine-tag">Unity</p>
+                            <p>Basic first-person movement controller with mouse look</p>
+                            <div class="card-actions">
+                                <button class="btn btn-primary" data-open-concept>
+                                    Open Concept
+                                </button>
+                                <button class="btn btn-outline">Download</button>
+                            </div>
+                        </div>
+
+                        <div
+                            class="example-card"
+                            data-engine="unreal"
+                            data-category="combat"
+                            data-concept="health-system"
+                        >
+                            <h4>Health System</h4>
+                            <p class="engine-tag">Unreal Engine</p>
+                            <p>Complete health and damage system with UI integration</p>
+                            <div class="card-actions">
+                                <button class="btn btn-primary" data-open-concept>
+                                    Open Concept
+                                </button>
+                                <button class="btn btn-outline">Download</button>
+                            </div>
+                        </div>
+
+                        <div
+                            class="example-card"
+                            data-engine="godot"
+                            data-category="physics"
+                            data-concept="platformer-physics"
+                        >
+                            <h4>2D Platformer Physics</h4>
+                            <p class="engine-tag">Godot</p>
+                            <p>Smooth 2D platformer movement with coyote time and jump buffering</p>
+                            <div class="card-actions">
+                                <button class="btn btn-primary" data-open-concept>
+                                    Open Concept
+                                </button>
+                                <button class="btn btn-outline">Download</button>
+                            </div>
+                        </div>
+
+                        <div
+                            class="example-card"
+                            data-engine="unity"
+                            data-category="ui"
+                            data-concept="inventory-system"
+                        >
+                            <h4>Inventory System</h4>
+                            <p class="engine-tag">Unity</p>
+                            <p>Drag and drop inventory with tooltips</p>
+                            <div class="card-actions">
+                                <button class="btn btn-primary" data-open-concept>
+                                    Open Concept
+                                </button>
+                                <button class="btn btn-outline">Download</button>
+                            </div>
+                        </div>
+
+                        <div
+                            class="example-card"
+                            data-engine="unity"
+                            data-category="systems"
+                            data-concept="save-system"
+                        >
+                            <h4>Save System</h4>
+                            <p class="engine-tag">Unity</p>
+                            <p>Save and load game data with JSON</p>
+                            <div class="card-actions">
+                                <button class="btn btn-primary" data-open-concept>
+                                    Open Concept
+                                </button>
+                                <button class="btn btn-outline">Download</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="search-section">
+                <div class="container">
+                    <div class="search-form">
+                        <div class="search-input-group">
+                            <input
+                                type="text"
+                                id="search-input"
+                                placeholder="Search for code examples..."
+                                class="search-input"
+                            />
+                            <button id="search-btn" class="btn btn-primary">Search</button>
+                        </div>
+
+                        <div class="search-suggestions">
+                            <h4>Popular Searches:</h4>
+                            <div class="suggestion-tags">
+                                <span class="suggestion-tag" data-search="player movement"
+                                    >Player Movement</span
+                                >
+                                <span class="suggestion-tag" data-search="inventory system"
+                                    >Inventory System</span
+                                >
+                                <span class="suggestion-tag" data-search="health bar"
+                                    >Health Bar</span
+                                >
+                                <span class="suggestion-tag" data-search="save system"
+                                    >Save System</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="search-results">
+                <div class="container">
+                    <div id="results-info" class="results-info" style="display: none">
+                        <p id="results-count">Found 0 results</p>
+                    </div>
+
+                    <div id="search-results-grid" class="examples-grid">
+                        <!-- Search results will appear here -->
+                    </div>
+
+                    <div id="no-results" class="no-results" style="display: none">
+                        <h3>No results found</h3>
+                        <p>Try adjusting your search terms</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 GamePlan</p>
+            </div>
+        </footer>
+
+        <script src="js/dataSourceStrategy.js"></script>
+        <script src="js/searchManager.js"></script>
+        <script src="js/script.js"></script>
+    </body>
+</html>

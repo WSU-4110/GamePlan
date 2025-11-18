@@ -19,10 +19,7 @@
                                 <a href="index.html" class="nav-link">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a href="browse.html" class="nav-link">Browse Code</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="search.html" class="nav-link">Search</a>
+                                <a href="explore.html" class="nav-link">Explore</a>
                             </li>
                             <li class="nav-item">
                                 <a href="about.html" class="nav-link">About</a>
@@ -48,24 +45,174 @@
             </nav>
         </header>
 
-        <h1>Login & Signup</h1>
+        <main>
+            <section class="page-header">
+                <div class="container">
+                    <h2>Login & Signup</h2>
+                    <p>Access your GamePlan account to save favorites and join the community.</p>
+                </div>
+            </section>
 
-        <h2>Sign Up</h2>
-        <form id="signup-form">
-            <input type="email" id="signup-email" placeholder="Email" required />
-            <input type="password" id="signup-password" placeholder="Password" required />
-            <button type="submit">Create Account</button>
-        </form>
+            <section class="auth-section">
+                <div class="container">
+                    <div class="auth-layout">
+                        <div class="auth-intro">
+                            <h3>Sign in to save favorites and keep building.</h3>
+                            <p>
+                                Modern, secure authentication with Supabase. Your session is
+                                encrypted and scoped to your browser.
+                            </p>
+                            <ul class="auth-benefits">
+                                <li>Sync favorites and playlists.</li>
+                                <li>Access personalized recommendations.</li>
+                                <li>Stay signed in across visits.</li>
+                            </ul>
+                        </div>
 
-        <h2>Login</h2>
-        <form id="login-form">
-            <input type="email" id="login-email" placeholder="Email" required />
-            <input type="password" id="login-password" placeholder="Password" required />
-            <button type="submit">Log In</button>
-        </form>
+                        <div class="auth-grid">
+                            <div class="auth-card">
+                                <div class="auth-card-header">
+                                    <div>
+                                        <h3>Create Account</h3>
+                                        <p class="auth-meta">
+                                            New to GamePlan? Start with a quick signup.
+                                        </p>
+                                    </div>
+                                </div>
+                                <form id="signup-form" class="auth-form">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="signup-firstname">First name</label>
+                                            <input
+                                                type="text"
+                                                id="signup-firstname"
+                                                placeholder="Alex"
+                                                autocomplete="given-name"
+                                                required
+                                            />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="signup-lastname">Last name</label>
+                                            <input
+                                                type="text"
+                                                id="signup-lastname"
+                                                placeholder="Mercer"
+                                                autocomplete="family-name"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="signup-email">Email</label>
+                                        <input
+                                            type="email"
+                                            id="signup-email"
+                                            placeholder="you@example.com"
+                                            autocomplete="email"
+                                            required
+                                        />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="signup-password">Password</label>
+                                        <div class="password-field">
+                                            <input
+                                                type="password"
+                                                id="signup-password"
+                                                placeholder="Create a password"
+                                                autocomplete="new-password"
+                                                required
+                                            />
+                                            <button
+                                                type="button"
+                                                class="password-toggle"
+                                                data-password-toggle="signup-password"
+                                                aria-label="Toggle password visibility"
+                                            >
+                                                Show
+                                            </button>
+                                        </div>
+                                        <p class="form-helper">
+                                            Use at least 8 characters with a mix of symbols.
+                                        </p>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary auth-submit">
+                                        Create Account
+                                    </button>
+                                </form>
+                            </div>
 
-        <button id="logout-btn">Log Out</button>
-        <p id="status"></p>
+                            <div class="auth-card">
+                                <div class="auth-card-header">
+                                    <div>
+                                        <h3>Log In</h3>
+                                        <p class="auth-meta">
+                                            Welcome back! Pick up where you left off.
+                                        </p>
+                                    </div>
+                                </div>
+                                <form id="login-form" class="auth-form">
+                                    <div class="form-group">
+                                        <label for="login-email">Email</label>
+                                        <input
+                                            type="email"
+                                            id="login-email"
+                                            placeholder="you@example.com"
+                                            autocomplete="email"
+                                            required
+                                        />
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-label-row">
+                                            <label for="login-password">Password</label>
+                                            <a class="auth-link" href="#">Forgot password?</a>
+                                        </div>
+                                        <div class="password-field">
+                                            <input
+                                                type="password"
+                                                id="login-password"
+                                                placeholder="Enter your password"
+                                                autocomplete="current-password"
+                                                required
+                                            />
+                                            <button
+                                                type="button"
+                                                class="password-toggle"
+                                                data-password-toggle="login-password"
+                                                aria-label="Toggle password visibility"
+                                            >
+                                                Show
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="checkbox-row">
+                                        <label class="checkbox">
+                                            <input type="checkbox" id="login-remember" />
+                                            <span>Keep me signed in</span>
+                                        </label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary auth-submit">
+                                        Log In
+                                    </button>
+                                </form>
+
+                                <div class="auth-extra">
+                                    <p class="auth-note">
+                                        Use the same email you registered with GamePlan.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="auth-status">
+                            <button id="logout-btn" class="btn btn-secondary auth-logout">
+                                Log Out
+                            </button>
+                            <p id="status" role="status" aria-live="polite"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
         <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
         <script src="js/script.js"></script>
     </body>
