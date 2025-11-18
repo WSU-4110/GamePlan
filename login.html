@@ -7,25 +7,54 @@
   <title>Login Page</title>
 </head>
 <body>
-  <h1>Login & Signup</h1>
+  <div class="login-wrapper">
+    <div class="login-card">
 
-  <h2>Sign Up</h2>
-  <form id="signup-form">
-    <input type="email" id="signup-email" placeholder="Email" required />
-    <input type="password" id="signup-password" placeholder="Password" required />
-    <button type="submit">Create Account</button>
-  </form>
+      <div class="login-header">
+        <h1>Login & Signup</h1>
+        <p>Access your GamePlan account below.</p>
+      </div>
 
-  <h2>Login</h2>
-  <form id="login-form">
-    <input type="email" id="login-email" placeholder="Email" required />
-    <input type="password" id="login-password" placeholder="Password" required />
-    <button type="submit">Log In</button>
-  </form>
+      <div class="form-section">
+        <h2>Sign Up</h2>
+        <form id="signup-form">
+          <div class="input-group">
+            <i class="fa-regular fa-envelope"></i>
+            <input type="email" id="signup-email" placeholder="Email" required />
+          </div>
 
-  <button id="logout-btn">Log Out</button>
-  <p id="status"></p>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="script.js" defer></script>
+          <div class="input-group">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="signup-password" placeholder="Password" required />
+          </div>
+
+          <button type="submit">Create Account</button>
+        </form>
+      </div>
+
+      <div class="form-section">
+        <h2>Login</h2>
+        <form id="login-form">
+          <div class="input-group">
+            <i class="fa-regular fa-envelope"></i>
+            <input type="email" id="login-email" placeholder="Email" required />
+          </div>
+
+          <div class="input-group">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="login-password" placeholder="Password" required />
+          </div>
+
+          <button type="submit">Log In</button>
+        </form>
+
+        <button id="logout-btn">Log Out</button>
+      </div>
+
+      <p id="status"></p>
+
+    </div>
+  </div>
 </body>
+
 </html>
