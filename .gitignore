@@ -1,0 +1,14 @@
+# lowercase comments: ignore dependencies and build artifacts
+node_modules/
+coverage/
+.env
+.env.*
+*.log
+npm-debug.log*
+yarn-error.log
+dist/
+build/
+tmp/
+.DS_Store
+Thumbs.db
+
