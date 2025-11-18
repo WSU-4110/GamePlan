@@ -11,18 +11,17 @@
             <nav class="navbar">
                 <div class="nav-container">
                     <div class="nav-logo">
-                        <h1>GamePlan</h1>
+                        <a href="index.html" class="nav-logo-link">
+                            <h1>GamePlan</h1>
+                        </a>
                     </div>
                     <div class="nav-right">
                         <ul class="nav-menu">
                             <li class="nav-item">
-                                <a href="index.html" class="nav-link">Home</a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="explore.html" class="nav-link active">Explore</a>
                             </li>
                             <li class="nav-item">
-                                <a href="about.html" class="nav-link">About</a>
+                                <a href="community.html" class="nav-link">Community</a>
                             </li>
                             <li class="nav-item">
                                 <a href="login.html" class="nav-link">Login</a>
@@ -50,6 +49,40 @@
                 <div class="container">
                     <h2>Explore Code Examples</h2>
                     <p>Search and filter game development code by engine and category</p>
+                </div>
+            </section>
+
+            <section class="search-section">
+                <div class="container">
+                    <div class="search-form">
+                        <div class="search-input-group">
+                            <input
+                                type="text"
+                                id="search-input"
+                                placeholder="Search for code examples..."
+                                class="search-input"
+                            />
+                            <button id="search-btn" class="btn btn-primary">Search</button>
+                        </div>
+
+                        <div class="search-suggestions">
+                            <h4>Popular Searches:</h4>
+                            <div class="suggestion-tags">
+                                <span class="suggestion-tag" data-search="player movement"
+                                    >Player Movement</span
+                                >
+                                <span class="suggestion-tag" data-search="inventory system"
+                                    >Inventory System</span
+                                >
+                                <span class="suggestion-tag" data-search="health bar"
+                                    >Health Bar</span
+                                >
+                                <span class="suggestion-tag" data-search="save system"
+                                    >Save System</span
+                                >
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -172,49 +205,13 @@
                 </div>
             </section>
 
-            <section class="search-section">
-                <div class="container">
-                    <div class="search-form">
-                        <div class="search-input-group">
-                            <input
-                                type="text"
-                                id="search-input"
-                                placeholder="Search for code examples..."
-                                class="search-input"
-                            />
-                            <button id="search-btn" class="btn btn-primary">Search</button>
-                        </div>
-
-                        <div class="search-suggestions">
-                            <h4>Popular Searches:</h4>
-                            <div class="suggestion-tags">
-                                <span class="suggestion-tag" data-search="player movement"
-                                    >Player Movement</span
-                                >
-                                <span class="suggestion-tag" data-search="inventory system"
-                                    >Inventory System</span
-                                >
-                                <span class="suggestion-tag" data-search="health bar"
-                                    >Health Bar</span
-                                >
-                                <span class="suggestion-tag" data-search="save system"
-                                    >Save System</span
-                                >
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             <section class="search-results">
                 <div class="container">
                     <div id="results-info" class="results-info" style="display: none">
                         <p id="results-count">Found 0 results</p>
                     </div>
 
-                    <div id="search-results-grid" class="examples-grid">
-                        <!-- Search results will appear here -->
-                    </div>
+                    <div id="search-results-grid" class="examples-grid"></div>
 
                     <div id="no-results" class="no-results" style="display: none">
                         <h3>No results found</h3>

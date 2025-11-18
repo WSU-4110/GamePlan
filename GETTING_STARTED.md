@@ -8,6 +8,7 @@ Quick guide to explore and modify the project.
 GamePlan/
 ├── index.html          # Homepage
 ├── explore.html        # Explore (combined browse + search)
+├── community.html      # Community discussion page
 ├── about.html          # About page
 ├── login.html          # Auth page
 ├── profile.html        # Profile page
