@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Community - GamePlan</title>
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="nav-container">
+                    <div class="nav-logo">
+                        <a href="index.html" class="nav-logo-link">
+                            <h1>GamePlan</h1>
+                        </a>
+                    </div>
+                    <div class="nav-right">
+                        <ul class="nav-menu">
+                            <li class="nav-item">
+                                <a href="explore.html" class="nav-link">Explore</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="community.html" class="nav-link active">Community</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="login.html" class="nav-link">Login</a>
+                            </li>
+                        </ul>
+
+                        <a class="nav-profile" href="profile.html">
+                            <span class="profile-avatar" aria-hidden="true">GP</span>
+                            <span class="profile-info">
+                                <span class="profile-name">Alex Mercer</span>
+                                <span class="profile-role">Creator</span>
+                            </span>
+                        </a>
+
+                        <div class="hamburger">
+                            <span class="bar"></span><span class="bar"></span
+                            ><span class="bar"></span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section class="page-header">
+                <div class="container">
+                    <h2>Community Discussion</h2>
+                    <p>Share ideas, ask questions, and help others build better games.</p>
+                </div>
+            </section>
+
+            <section class="community-section">
+                <div class="container">
+                    <div class="community-wrapper">
+                        <div class="community-intro">
+                            <div>
+                                <h3>Start a conversation</h3>
+                                <p class="community-meta">
+                                    Share code ideas, troubleshooting tips, or feedback for fellow
+                                    developers. Keep it concise and constructive.
+                                </p>
+                            </div>
+                            <ul class="community-guidelines">
+                                <li>Stay on topic and cite engines or tools when relevant.</li>
+                                <li>Avoid sharing secrets or personal information.</li>
+                                <li>Use replies to keep threads organized.</li>
+                            </ul>
+                        </div>
+
+                        <div class="comment-box">
+                            <label for="newComment" class="comment-label">Post a new message</label>
+                            <textarea
+                                id="newComment"
+                                placeholder="Share an update, ask a question, or drop a quick tip..."
+                            ></textarea>
+                            <button id="postComment" class="btn btn-primary">Post</button>
+                        </div>
+
+                        <div id="commentSection" class="comment-thread" aria-live="polite"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <script type="module">
+            const firebaseConfig = {
+                apiKey: 'AIzaSyBR_HU3KdpjP4bmoMCq_R-G6V75M-bID9o',
+                authDomain: 'community-csc4110.firebaseapp.com',
+                projectId: 'community-csc4110',
+                storageBucket: 'community-csc4110.firebasestorage.app',
+                messagingSenderId: '24914636358',
+                appId: '1:24914636358:web:e05a084885276481bce447',
+                measurementId: 'G-X7BFR48XRS',
+            };
+
+            import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js';
+            import {
+                getFirestore,
+                collection,
+                addDoc,
+                serverTimestamp,
+                query,
+                orderBy,
+                onSnapshot,
+            } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js';
+
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
+
+            const postBtn = document.getElementById('postComment');
+            const newComment = document.getElementById('newComment');
+            const commentSection = document.getElementById('commentSection');
+
+            postBtn.addEventListener('click', async () => {
+                const text = newComment.value.trim();
+                if (!text) return;
+
+                await addDoc(collection(db, 'comments'), {
+                    text,
+                    parentId: null,
+                    createdAt: serverTimestamp(),
+                });
+
+                newComment.value = '';
+            });
+
+            function renderComment(docSnap, repliesMap) {
+                const data = docSnap.data();
+                const id = docSnap.id;
+                const avatarText = String(id).slice(0, 2).toUpperCase();
+                const displayId = String(id).slice(0, 8);
+
+                const div = document.createElement('div');
+                div.className = 'comment';
+
+                const timeText = data.createdAt?.toDate
+                    ? new Date(data.createdAt.toDate()).toLocaleString()
+                    : '';
+
+                div.innerHTML = `
+                <div class="comment-header">
+                    <div class="comment-avatar" aria-hidden="true">${avatarText}</div>
+                    <div>
+                        <div class="meta">#${displayId} • ${timeText}</div>
+                        <p class="comment-body">${escape(data.text)}</p>
+                    </div>
+                </div>
+                <button class="btn btn-secondary reply-btn" data-id="${id}">Reply</button>
+
+                <div id="replyContainer-${id}" style="display:none; margin-top:10px;">
+                    <textarea class="reply-box" id="replyBox-${id}" placeholder="Write a reply..."></textarea>
+                    <button class="btn btn-outline post-reply" data-id="${id}">Post Reply</button>
+                </div>
+            `;
+
+                const replies = repliesMap[id] || [];
+                replies.forEach((r) => {
+                    const d = document.createElement('div');
+                    d.className = 'reply';
+                    const rTime = r.createdAt?.toDate
+                        ? new Date(r.createdAt.toDate()).toLocaleString()
+                        : '';
+                    d.innerHTML = `<div class="meta">${rTime}</div><p>${escape(r.text)}</p>`;
+                    div.appendChild(d);
+                });
+
+                return div;
+            }
+
+            function escape(str) {
+                return str?.replace(
+                    /[&<>"']/g,
+                    (m) =>
+                        ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m]
+                );
+            }
+
+            const q = query(collection(db, 'comments'), orderBy('createdAt', 'asc'));
+            onSnapshot(q, (snapshot) => {
+                const allDocs = [];
+                snapshot.forEach((doc) => allDocs.push({ id: doc.id, doc }));
+
+                const repliesMap = {};
+                const topLevel = [];
+
+                allDocs.forEach((item) => {
+                    const data = item.doc.data();
+                    if (data.parentId) {
+                        repliesMap[data.parentId] ??= [];
+                        repliesMap[data.parentId].push({ id: item.id, ...data });
+                    } else {
+                        topLevel.push(item.doc);
+                    }
+                });
+
+                commentSection.innerHTML = '';
+
+                topLevel.forEach((doc) => {
+                    const c = renderComment(doc, repliesMap);
+                    commentSection.appendChild(c);
+                });
+
+                document.querySelectorAll('.reply-btn').forEach((btn) => {
+                    btn.onclick = () => {
+                        const id = btn.dataset.id;
+                        const box = document.getElementById(`replyContainer-${id}`);
+                        box.style.display = box.style.display === 'none' ? 'block' : 'none';
+                    };
+                });
+
+                document.querySelectorAll('.post-reply').forEach((btn) => {
+                    btn.onclick = async () => {
+                        const id = btn.dataset.id;
+                        const box = document.getElementById(`replyBox-${id}`);
+                        const text = box.value.trim();
+
+                        if (!text) return;
+
+                        await addDoc(collection(db, 'comments'), {
+                            text,
+                            parentId: id,
+                            createdAt: serverTimestamp(),
+                        });
+
+                        box.value = '';
+                    };
+                });
+            });
+        </script>
+    </body>
+</html>

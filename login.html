@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login Page</title>
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="nav-container">
+                    <div class="nav-logo">
+                        <a href="index.html" class="nav-logo-link">
+                            <h1>GamePlan</h1>
+                        </a>
+                    </div>
+                    <div class="nav-right">
+                        <ul class="nav-menu">
+                            <li class="nav-item">
+                                <a href="explore.html" class="nav-link">Explore</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="community.html" class="nav-link">Community</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="login.html" class="nav-link active">Login</a>
+                            </li>
+                        </ul>
+                        <a class="nav-profile" href="profile.html">
+                            <span class="profile-avatar" aria-hidden="true">GP</span>
+                            <span class="profile-info">
+                                <span class="profile-name">Alex Mercer</span>
+                                <span class="profile-role">Creator</span>
+                            </span>
+                        </a>
+                        <div class="hamburger">
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section class="page-header">
+                <div class="container">
+                    <h2>Login & Signup</h2>
+                    <p>Access your GamePlan account to save favorites and join the community.</p>
+                </div>
+            </section>
+
+            <section class="auth-section">
+                <div class="container">
+                    <div class="auth-layout">
+                        <div class="auth-intro">
+                            <h3>Sign in to save favorites and keep building.</h3>
+                            <p>
+                                Modern, secure authentication with Supabase. Your session is
+                                encrypted and scoped to your browser.
+                            </p>
+                            <ul class="auth-benefits">
+                                <li>Sync favorites and playlists.</li>
+                                <li>Access personalized recommendations.</li>
+                                <li>Stay signed in across visits.</li>
+                            </ul>
+                        </div>
+
+                        <div class="auth-grid">
+                            <div class="auth-card">
+                                <div class="auth-card-header">
+                                    <div>
+                                        <h3>Create Account</h3>
+                                        <p class="auth-meta">
+                                            New to GamePlan? Start with a quick signup.
+                                        </p>
+                                    </div>
+                                </div>
+                                <form id="signup-form" class="auth-form">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="signup-firstname">First name</label>
+                                            <input
+                                                type="text"
+                                                id="signup-firstname"
+                                                placeholder="Alex"
+                                                autocomplete="given-name"
+                                                required
+                                            />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="signup-lastname">Last name</label>
+                                            <input
+                                                type="text"
+                                                id="signup-lastname"
+                                                placeholder="Mercer"
+                                                autocomplete="family-name"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="signup-email">Email</label>
+                                        <input
+                                            type="email"
+                                            id="signup-email"
+                                            placeholder="you@example.com"
+                                            autocomplete="email"
+                                            required
+                                        />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="signup-password">Password</label>
+                                        <div class="password-field">
+                                            <input
+                                                type="password"
+                                                id="signup-password"
+                                                placeholder="Create a password"
+                                                autocomplete="new-password"
+                                                required
+                                            />
+                                            <button
+                                                type="button"
+                                                class="password-toggle"
+                                                data-password-toggle="signup-password"
+                                                aria-label="Toggle password visibility"
+                                            >
+                                                Show
+                                            </button>
+                                        </div>
+                                        <p class="form-helper">
+                                            Use at least 8 characters with a mix of symbols.
+                                        </p>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary auth-submit">
+                                        Create Account
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div class="auth-card">
+                                <div class="auth-card-header">
+                                    <div>
+                                        <h3>Log In</h3>
+                                        <p class="auth-meta">
+                                            Welcome back! Pick up where you left off.
+                                        </p>
+                                    </div>
+                                </div>
+                                <form id="login-form" class="auth-form">
+                                    <div class="form-group">
+                                        <label for="login-email">Email</label>
+                                        <input
+                                            type="email"
+                                            id="login-email"
+                                            placeholder="you@example.com"
+                                            autocomplete="email"
+                                            required
+                                        />
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-label-row">
+                                            <label for="login-password">Password</label>
+                                            <a class="auth-link" href="#">Forgot password?</a>
+                                        </div>
+                                        <div class="password-field">
+                                            <input
+                                                type="password"
+                                                id="login-password"
+                                                placeholder="Enter your password"
+                                                autocomplete="current-password"
+                                                required
+                                            />
+                                            <button
+                                                type="button"
+                                                class="password-toggle"
+                                                data-password-toggle="login-password"
+                                                aria-label="Toggle password visibility"
+                                            >
+                                                Show
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="checkbox-row">
+                                        <label class="checkbox">
+                                            <input type="checkbox" id="login-remember" />
+                                            <span>Keep me signed in</span>
+                                        </label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary auth-submit">
+                                        Log In
+                                    </button>
+                                </form>
+
+                                <div class="auth-extra">
+                                    <p class="auth-note">
+                                        Use the same email you registered with GamePlan.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="auth-status">
+                            <button id="logout-btn" class="btn btn-secondary auth-logout">
+                                Log Out
+                            </button>
+                            <p id="status" role="status" aria-live="polite"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script src="js/script.js"></script>
+    </body>
+</html>

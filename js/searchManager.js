@@ -6,6 +6,8 @@ class SearchManager {
         this.resultsInfo = null;
         this.resultsCount = null;
         this.noResults = null;
+        this.browseGrid = null;
+        this.filtersSection = null;
     }
 
     /**
@@ -18,6 +20,8 @@ class SearchManager {
         this.resultsInfo = elements.resultsInfo;
         this.resultsCount = elements.resultsCount;
         this.noResults = elements.noResults;
+        this.browseGrid = elements.browseGrid || null;
+        this.filtersSection = elements.filtersSection || null;
     }
 
     /**
@@ -58,6 +62,13 @@ class SearchManager {
     _renderResults(results, query) {
         this.resultsArea.innerHTML = '';
 
+        if (this.browseGrid) {
+            this.browseGrid.style.display = results.length === 0 ? '' : 'none';
+        }
+        if (this.filtersSection) {
+            this.filtersSection.style.display = results.length === 0 ? '' : 'none';
+        }
+
         if (results.length === 0) {
             if (this.resultsInfo) this.resultsInfo.style.display = 'none';
             if (this.noResults) this.noResults.style.display = 'block';
@@ -69,12 +80,11 @@ class SearchManager {
         if (this.noResults) this.noResults.style.display = 'none';
         if (this.resultsCount) {
             const plural = results.length !== 1 ? 's' : '';
-            this.resultsCount.textContent =
-                `Found ${results.length} result${plural} for "${query}"`;
+            this.resultsCount.textContent = `Found ${results.length} result${plural} for "${query}"`;
         }
 
         // Create cards for each result
-        results.forEach(example => {
+        results.forEach((example) => {
             const card = this._createCard(example);
             this.resultsArea.appendChild(card);
         });
@@ -113,4 +123,9 @@ class SearchManager {
         if (this.resultsInfo) this.resultsInfo.style.display = 'none';
         if (this.noResults) this.noResults.style.display = 'none';
     }
+}
+
+// Export for Node.js/Jest (doesn't affect browser usage)
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = SearchManager;
 }

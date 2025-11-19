@@ -1,82 +1,41 @@
 # Getting Started with GamePlan
 
-This is a setup guide for the GamePlan project.
+Quick guide to explore and modify the project.
 
-## Project Structurea
+## Project Structure
 
 ```
 GamePlan/
 ├── index.html          # Homepage
-├── browse.html         # Browse code examples
-├── search.html         # Search for code
+├── explore.html        # Explore (combined browse + search)
+├── community.html      # Community discussion page
 ├── about.html          # About page
-├── css/
-│   └── styles.css      # All the styling
-├── js/
-│   └── script.js       # All the JavaScript
-├── images/             # Put images here
-└── database/           # For database stuff later
+├── login.html          # Auth page
+├── profile.html        # Profile page
+├── css/styles.css      # Styles
+├── js/                 # JavaScript
+│   ├── script.js
+│   ├── dataSourceStrategy.js
+│   └── searchManager.js
+└── database/           # Future backend items
 ```
 
-## How to Work on This Project
+## Open the Site
 
-### Step 1: Get the Code
+- Open `index.html` in your browser to view the homepage.
+- Use `explore.html` to browse/search examples in one place.
+
+## Edit Files
+
+- **HTML**: structure and content
+- **css/styles.css**: styling
+- **js/script.js**: site interactions (filters, search, modals)
+
+## Git Basics
+
 ```bash
-git clone https://github.com/WSU-4110/GamePlan.git
-cd GamePlan
+git pull origin main       # Update
+git add .                  # Stage changes
+git commit -m "message"    # Commit
+git push origin main       # Push
 ```
-
-### Step 2: Open the Website
-- Just open `index.html` in your web browser.
-
-### Step 3: Make Changes
-- **HTML files**: Change the content and structure
-- **css/styles.css**: Change how things look
-- **js/script.js**: Change how things work
-
-## Team Roles - Who Does What?
-
-### Frontend Team
-- Work on HTML, CSS, and JavaScript
-- Make the website look good and work well
-- Files you'll work with: `*.html`, `css/styles.css`, `js/script.js`
-
-### Backend Team (Later)
-- Work on the database and server
-- Files you'll work with: stuff in `database/` folder
-
-## What Each File Does
-
-### HTML Files
-- `index.html` - The main homepage
-- `browse.html` - Where users browse code examples
-- `search.html` - Where users search for code
-- `about.html` - Information about the project
-
-### CSS File
-- `css/styles.css` - Makes everything look nice
-- Controls colors, fonts, layout, and animations
-
-### JavaScript File
-- `js/script.js` - Makes the website interactive
-- Handles search, filtering, mobile menu, etc.
-
-## Working with Git (Simple Version)
-
-### Before You Start Working:
-```bash
-git pull origin main
-```
-
-### After You Make Changes:
-```bash
-git add .
-git commit -m "Describe what you changed"
-git push origin main
-```
-
-### If You Want to Be Safe:
-1. Create a branch: `git checkout -b your-name-feature`
-2. Make your changes
-3. Push your branch: `git push origin your-name-feature`
-4. Ask Quinn, or another project member to merge it.
