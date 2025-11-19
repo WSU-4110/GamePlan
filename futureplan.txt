@@ -1,0 +1,15 @@
+
+
+iimprove page layout and make navigation cleaner
+
+Add more code snippets for multiple engines
+
+Create more tutorials and simple learning paths
+
+Make the search system faster and more accurate
+
+Upgrade the design with cleaner UI and better visuals
+
+Expand the Explore page with more categories and resources
+
+Add future community features
