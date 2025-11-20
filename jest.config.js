@@ -2,15 +2,18 @@ module.exports = {
     // Use jsdom environment to simulate browser DOM
     testEnvironment: 'jsdom',
 
-    // Test file patterns
+    // test file patterns
     testMatch: ['**/__tests__/**/*.js', '**/*.test.js', '**/*.spec.js'],
 
-    // Coverage configuration
+    // coberage configuration
     collectCoverageFrom: ['js/**/*.js', '!js/**/*.test.js', '!js/**/*.spec.js'],
 
-    // Clear mocks between tests
     clearMocks: true,
 
     // Verbose output
     verbose: true,
 };
+
+//notes:
+// -  `collectCoverageFrom` if you add new folders or want deeper coverage.
+// - iff ? performance becomes an issue, consider narrowing down `testMatch` patterns.
