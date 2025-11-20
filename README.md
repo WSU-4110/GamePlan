@@ -39,6 +39,15 @@ This website will allow users to:
     The importance of our project is in working together as a team, brainstorming ideas, and trusting each other.
     Our Goal is to produce amazing work that’s usable and effective, to make a change in journeys.
 
+
+- **Supported Game Engines**
+Unity Unreal Engine Godot
+
+
+Platform:
+= **Web-first Application, fully responsive layout**
+  
+
 ## Quick Start
 
 1. **Clone the repository:**
