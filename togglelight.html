@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Theme Toggle</title>
+
+<style>
+  body {
+    background: white;
+    color: black;
+    transition: 0.3s;
+    font-family: Arial, sans-serif;
+  }
+
+  body.dark {
+    background: #111;
+    color: #eee;
+  }
+
+  #themeBtn {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    margin: 20px;
+  }
+</style>
+</head>
+
+<body>
+
+<button id="themeBtn" onclick="toggleTheme()">Dark Mode</button>
+
+<script>
+  function toggleTheme() {
+    document.body.classList.toggle("dark");
+
+    const btn = document.getElementById("themeBtn");
+
+    if (document.body.classList.contains("dark")) {
+      btn.textContent = "Light Mode";
+    } else {
+      btn.textContent = "Dark Mode";
+    }
+  }
+</script>
+
+<h1>Theme Toggle Demo</h1>
+<p>Click the button to switch between dark and light mode.</p>
+
+</body>
+</html>
