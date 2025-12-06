@@ -1,52 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <title>Theme Toggle</title>
 
 <style>
-  body {
-    background: white;
-    color: black;
-    transition: 0.3s;
-    font-family: Arial, sans-serif;
+  :root {
+    --bg: white;
+    --text: black;
   }
 
   body.dark {
-    background: #111;
-    color: #eee;
+    --bg: #0d0d0d;
+    --text: #e5e5e5;      
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    transition: background 0.3s ease, color 0.3s ease;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
   }
 
   #themeBtn {
-    padding: 10px 15px;
+    padding: 10px 18px;
     border: none;
     cursor: pointer;
     border-radius: 6px;
-    margin: 20px;
+    background: #444;
+    color: #fff;
+    transition: 0.3s;
+    font-size: 16px;
+  }
+
+  #themeBtn:hover {
+    background: #666;
   }
 </style>
 </head>
 
 <body>
 
-<button id="themeBtn" onclick="toggleTheme()">Dark Mode</button>
-
-<script>
-  function toggleTheme() {
-    document.body.classList.toggle("dark");
-
-    const btn = document.getElementById("themeBtn");
-
-    if (document.body.classList.contains("dark")) {
-      btn.textContent = "Light Mode";
-    } else {
-      btn.textContent = "Dark Mode";
-    }
-  }
-</script>
+<button id="themeBtn"> Dark Mode</button>
 
 <h1>Theme Toggle Demo</h1>
 <p>Click the button to switch between dark and light mode.</p>
+
+<script>
+  const body = document.body;
+  const btn = document.getElementById("themeBtn");
+ // 
+  // losdd saved theme
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    body.classList.add("dark");
+    btn.textContent = " Light Mode";
+  }
+
+  btn.addEventListener("click", () => {
+    body.classList.toggle("dark");
+
+    const isDark = body.classList.contains("dark");
+    btn.textContent = isDark ? " Light Mode" : " Dark Mode";
+
+    
+    // save preference
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
+</script>
 
 </body>
 </html>
