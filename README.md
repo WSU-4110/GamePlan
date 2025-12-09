@@ -15,11 +15,11 @@ This website will allow users to:
 
 ## Team Members
 
-- Amjad:
-- Quinn: GitHub Admin
-- Yousef:
-- Bryan:
-- Aiden:
+- Amjad: Frontend developer
+- Quinn: GitHub Admin - Full stack developer
+- Yousef: Backend developer
+- Bryan: Frontend Developer
+- Aiden: Backend Developer
 
 ## Tech Stack & Platform
 
