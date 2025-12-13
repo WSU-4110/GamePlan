@@ -9,44 +9,42 @@ Deployed to: [https://wsu-4110.github.io/GamePlan/](https://wsu-4110.github.io/G
 
 This website will allow users to:
 
-- Browse and download example code for different game engines
-- Search for code snippets by game type or category
-- Read about the project and its contributors
+-   Browse and download example code for different game engines
+-   Search for code snippets by game type or category
+-   Read about the project and its contributors
 
 ## Team Members
 
-- Amjad: Frontend developer
-- Quinn: GitHub Admin - Full stack developer
-- Yousef: Backend developer
-- Bryan: Frontend Developer
-- Aiden: Backend Developer
+-   Amjad: Frontend developer
+-   Quinn: GitHub Admin - Full stack developer
+-   Yousef: Backend developer
+-   Bryan: Frontend Developer
+-   Aiden: Backend Developer
 
 ## Tech Stack & Platform
 
-- **Frontend:** HTML, CSS, JavaScript  
-  Provides a clean, responsive user interface accessible from any modern browser.
+-   **Frontend:** HTML, CSS, JavaScript  
+    Provides a clean, responsive user interface accessible from any modern browser.
 
-- **Backend:** SQL  
-  Handles data storage and retrieval for code examples, search functionality, and user interactions.
+-   **Backend:** SQL  
+    Handles data storage and retrieval for code examples, search functionality, and user interactions.
 
-- **Engines for Examples:** Unity, Unreal Engine, Godot  
-  Sample code and tutorials will be available for multiple popular game engines.
+-   **Engines for Examples:** Unity, Unreal Engine, Godot  
+    Sample code and tutorials will be available for multiple popular game engines.
 
-- **Platform:** Web-first Application  
-  Designed primarily for browser access with a responsive layout.  
-  Future expansion may include native desktop applications for Windows and macOS if needed.
-- ## Team Goals & Importance
+-   **Platform:** Web-first Application  
+    Designed primarily for browser access with a responsive layout.  
+    Future expansion may include native desktop applications for Windows and macOS if needed.
+-   ## Team Goals & Importance
+
     The importance of our project is in working together as a team, brainstorming ideas, and trusting each other.
     Our Goal is to produce amazing work that’s usable and effective, to make a change in journeys.
 
-
-- **Supported Game Engines**
-Unity Unreal Engine Godot
-
+-   **Supported Game Engines**
+    Unity Unreal Engine Godot
 
 Platform:
 = **Web-first Application, fully responsive layout**
-  
 
 ## Quick Start
 
