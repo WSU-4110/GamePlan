@@ -44,7 +44,7 @@ This website will allow users to:
     Unity Unreal Engine Godot
 
 Platform:
-= **Web-first Application, fully responsive layout**
+**Web-first Application, fully responsive layout**
 
 ## Quick Start
 
